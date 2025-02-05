@@ -1,14 +1,18 @@
-let statsStateKey = 'statsState';
-
 $(document).ready(function() {
-    let statsCheckbox = $('#stats');
-
-    browser.storage.local.get(statsStateKey).then(data => {
-        statsCheckbox.prop('checked', data[statsStateKey] || false);
-    });
-
-    statsCheckbox.change(function() {
-        let statsStatus = $(this).is(':checked');
-        browser.storage.local.set({[statsStateKey]: statsStatus});
-    });
+    checkboxPropAndSave('stats');
+    checkboxPropAndSave('status_label_old');
+    checkboxPropAndSave('expand_show_lists');
 });
+
+function checkboxPropAndSave(checkboxId) {
+    let checkbox = $('#' + checkboxId);
+
+    browser.storage.local.get(checkboxId).then(data => {
+        checkbox.prop('checked', data[checkboxId] || false);
+    });
+
+    checkbox.change(function() {
+        let checkboxValue = $(this).is(':checked');
+        browser.storage.local.set({[checkboxId]: checkboxValue});
+    });
+}

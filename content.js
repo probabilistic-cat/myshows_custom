@@ -1,13 +1,11 @@
 let language = 'en';
 let class_prefix = 'myshows_custom_';
 
-let statsStateKey = 'statsState';
-
 $(document).ready(function(){
     detectLanguage();
-    stats();
-    oldStatusLabel();
-    expandShowLists();
+    enableIfOn('stats', stats)
+    enableIfOn('status_label_old', oldStatusLabel)
+    enableIfOn('expand_show_lists', expandShowLists)
 })
 
 function addGlobalCss(cssItems) {
@@ -18,42 +16,28 @@ function addGlobalCss(cssItems) {
     }
 }
 
+function enableIfOn(storageKey, callbackFunc) {
+    browser.storage.local.get(storageKey).then(data => {
+        if (data[storageKey]) {
+            callbackFunc();
+        }
+    });
+}
+
 function detectLanguage() {
     language = $('.langSwitcher__selected .lang__label').html();
 }
 
 function isProfilePage() {
     const h1 = $('div.wrapper div.container.content main.col8._borderLeft h1');
-
     return h1.length && h1.html() === window.location.pathname.substring(1);
 }
 
 function stats() {
-    browser.storage.local.get(statsStateKey).then(data => {
-        statsDisplay(data.statsState);
-    });
-}
-
-function statsDisplay(showStats) {
     if (!isProfilePage()) {
         return false;
     }
 
-    let statsClass = class_prefix + 'profile_stats';
-    let statsEl = $('.' + statsClass);
-    let statsExists = statsEl.length;
-
-    if (!showStats) {
-        if (statsExists) {
-            statsEl.hide();
-        }
-        return false;
-    }
-
-    statsExists ? statsEl.show() : statsRender(statsClass);
-}
-
-function statsRender(statsClass) {
     $('div.statusBlocks div.statusBlock').each(function (index) {
         if (index > 2) {
             return false;
@@ -71,10 +55,7 @@ function statsRender(statsClass) {
             of = 'від';
         }
 
-        subDiv.append(
-            '<span class="' + statsClass + '" style="margin-top: 10px;">'
-            + percent + '% ' + of + ' <b>' + max + '</b></span>'
-        );
+        subDiv.append('<span style="margin-top: 10px;">' + percent + '% ' + of + ' <b>' + max + '</b></span>');
     })
 }
 
