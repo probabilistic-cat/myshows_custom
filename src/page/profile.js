@@ -4,10 +4,6 @@ function isOldProfilePage() {
 }
 
 function profileStats() {
-    if (!isOldProfilePage()) {
-        return false;
-    }
-
     $('div.statusBlocks div.statusBlock').each(function (index) {
         if (index > 2) {
             return false;
@@ -34,15 +30,11 @@ function profileStatusLabelOld() {
 }
 
 function profileExpandShowLists() {
-    if (isOldProfilePage()) {
-        $('a.linkPseudo.show-shows span').each(function() {
-            $(this).click();
-        });
-    }
+    $('a.linkPseudo.show-shows span').each(function() {
+        $(this).click();
+    });
 }
 
 function profileExpandNewsfeed() {
-    if (isOldProfilePage()) {
-        $('a.linkPseudo.show-news span').click();
-    }
+    $('a.linkPseudo.show-news span').click();
 }

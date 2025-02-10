@@ -6,20 +6,20 @@ $(document).ready(function(){
 function enable() {
     detectLanguage();
 
-    enableIfOn('profile_stats', profileStats);
-    enableIfOn('profile_status_label_old', profileStatusLabelOld);
-    enableIfOn('profile_expand_show_lists', profileExpandShowLists);
-    enableIfOn('profile_expand_newsfeed', profileExpandNewsfeed);
+    enableIfOnAndOldProfilePage('profile_stats', profileStats);
+    enableIfOnAndOldProfilePage('profile_status_label_old', profileStatusLabelOld);
+    enableIfOnAndOldProfilePage('profile_expand_show_lists', profileExpandShowLists);
+    enableIfOnAndOldProfilePage('profile_expand_newsfeed', profileExpandNewsfeed);
 
-    enableIfOn('view_compact', viewCompact);
-    enableIfOn('view_navigation_remove', viewNavigationRemove);
-    enableIfOn('view_style_old', viewStyleOld);
-    enableIfOn('view_report_remove', viewReportRemove);
-    enableIfOn('view_emoji_remove', viewEmojiRemove);
-    enableIfOn('view_note_share_remove', viewNoteShareRemove);
-    enableIfOn('view_expand_seasons', viewExpandSeasons);
-    enableIfOn('view_similar_remove', viewSimilarRemove);
-    enableIfOn('view_best_comments_remove', viewBestCommentsRemove);
+    enableIfOnAndViewPage('view_compact', viewCompact);
+    enableIfOnAndViewPage('view_navigation_remove', viewNavigationRemove);
+    enableIfOnAndViewPage('view_style_old', viewStyleOld);
+    enableIfOnAndViewPage('view_report_remove', viewReportRemove);
+    enableIfOnAndViewPage('view_emoji_remove', viewEmojiRemove);
+    enableIfOnAndViewPage('view_note_share_remove', viewNoteShareRemove);
+    enableIfOnAndViewPage('view_expand_seasons', viewExpandSeasons);
+    enableIfOnAndViewPage('view_similar_remove', viewSimilarRemove);
+    enableIfOnAndViewPage('view_best_comments_remove', viewBestCommentsRemove);
 }
 
 function checkingUrlChange(callbackFunc) {
@@ -36,10 +36,20 @@ function checkingUrlChange(callbackFunc) {
     });
 }
 
-function enableIfOn(storageKey, callbackFunc) {
-    browser.storage.local.get(storageKey).then(data => {
-        if (data[storageKey]) {
-            callbackFunc();
-        }
-    });
+function enableIfOn(storageKey, callbackFunc, checkFunc) {
+    if (checkFunc()) {
+        browser.storage.local.get(storageKey).then(data => {
+            if (data[storageKey]) {
+                callbackFunc();
+            }
+        });
+    }
+}
+
+function enableIfOnAndOldProfilePage(storageKey, callbackFunc) {
+    enableIfOn(storageKey, callbackFunc, isOldProfilePage)
+}
+
+function enableIfOnAndViewPage(storageKey, callbackFunc) {
+    enableIfOn(storageKey, callbackFunc, isViewPage)
 }
