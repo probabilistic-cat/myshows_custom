@@ -9,10 +9,14 @@ html {
 }
 
 body {
-    width: 300px;
+    width: 400px;
     font-size: 13px;
     background-color: #ffffff;
     color: #1d1d1f;
+}
+
+.separator_v {
+    height: 10px;
 }
 
 .options_header {

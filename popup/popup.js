@@ -1,7 +1,17 @@
 $(document).ready(function() {
-    checkboxPropAndSave('stats');
-    checkboxPropAndSave('status_label_old');
-    checkboxPropAndSave('expand_show_lists');
+    checkboxPropAndSave('profile_stats');
+    checkboxPropAndSave('profile_status_label_old');
+    checkboxPropAndSave('profile_expand_show_lists');
+    checkboxPropAndSave('profile_expand_newsfeed');
+    checkboxPropAndSave('view_compact');
+    checkboxPropAndSave('view_navigation_remove');
+    checkboxPropAndSave('view_style_old');
+    checkboxPropAndSave('view_report_remove');
+    checkboxPropAndSave('view_emoji_remove');
+    checkboxPropAndSave('view_note_share_remove');
+    checkboxPropAndSave('view_expand_seasons');
+    checkboxPropAndSave('view_similar_remove');
+    checkboxPropAndSave('view_best_comments_remove');
 });
 
 function checkboxPropAndSave(checkboxId) {
