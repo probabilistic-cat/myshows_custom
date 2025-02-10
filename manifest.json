@@ -21,7 +21,10 @@
         ],
         "js": [
             "jquery-3.7.1.slim.min.js",
-            "content.js"
+            "src/common.js",
+            "src/page/profile.js",
+            "src/page/view.js",
+            "src/content.js"
         ]
     }]
 }
