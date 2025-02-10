@@ -1,6 +1,14 @@
 let language = 'en';
 
 $(document).ready(function(){
+    checkingUrlChange(enable);
+    enable();
+});
+
+
+// -------------------- Common functions --------------------
+
+function enable() {
     detectLanguage();
     enableIfOn('profile_stats', profileStats);
     enableIfOn('profile_status_label_old', profileStatusLabelOld);
@@ -15,10 +23,21 @@ $(document).ready(function(){
     enableIfOn('view_expand_seasons', expandSeasons);
     enableIfOn('view_similar_remove', viewSimilarRemove);
     enableIfOn('view_best_comments_remove', viewBestCommentsRemove);
-});
+}
 
-
-// -------------------- Common functions --------------------
+function checkingUrlChange(callbackFunc) {
+    let oldHref = document.location.href;
+    const observer = new MutationObserver(() => {
+        if (oldHref !== document.location.href) {
+            oldHref = document.location.href;
+            window.dispatchEvent(new Event('locationchange6'));
+        }
+    });
+    observer.observe(document.querySelector('title'), { childList: true });
+    window.addEventListener('locationchange6', () => {
+        callbackFunc();
+    });
+}
 
 function addGlobalCss(cssItems) {
     for (const cssItem of cssItems) {
