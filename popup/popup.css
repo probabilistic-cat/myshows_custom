@@ -14,16 +14,3 @@ body {
     background-color: #ffffff;
     color: #1d1d1f;
 }
-
-.separator_v {
-    height: 10px;
-}
-
-.options_header {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.option {
-  width: 100%;
-}
