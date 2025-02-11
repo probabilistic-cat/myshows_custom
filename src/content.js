@@ -5,22 +5,21 @@ $(document).ready(function(){
 
 function enable() {
     detectLanguage();
-    console.log('LANGUAGE IS: ' + language);
 
-    enableIfOnAndNamePage('name_stats', nameStats);
-    enableIfOnAndNamePage('name_status_label_old', nameStatusLabelOld);
-    enableIfOnAndNamePage('name_expand_show_lists', nameExpandShowLists);
-    enableIfOnAndNamePage('name_expand_newsfeed', nameExpandNewsfeed);
+    enableIfOn('name_stats', nameStats);
+    enableIfOn('name_status_label_old', nameStatusLabelOld);
+    enableIfOn('name_expand_show_lists', nameExpandShowLists);
+    enableIfOn('name_expand_newsfeed', nameExpandNewsfeed);
 
-    enableIfOnAndViewShowPage('view_compact', viewCompact);
-    enableIfOnAndViewShowPage('view_navigation_remove', viewNavigationRemove);
-    enableIfOnAndViewShowPage('view_style_old', viewStyleOld);
-    enableIfOnAndViewShowPage('view_report_remove', viewReportRemove);
-    enableIfOnAndViewShowPage('view_emoji_remove', viewEmojiRemove);
-    enableIfOnAndViewShowPage('view_note_share_remove', viewNoteShareRemove);
-    enableIfOnAndViewShowPage('view_expand_seasons', viewExpandSeasons);
-    enableIfOnAndViewShowPage('view_similar_remove', viewSimilarRemove);
-    enableIfOnAndViewShowPage('view_best_comments_remove', viewBestCommentsRemove);
+    enableIfOn('view_compact', viewCompact);
+    enableIfOn('view_navigation_remove', viewNavigationRemove);
+    enableIfOn('view_style_old', viewStyleOld);
+    enableIfOn('view_report_remove', viewReportRemove);
+    enableIfOn('view_emoji_remove', viewEmojiRemove);
+    enableIfOn('view_note_share_remove', viewNoteShareRemove);
+    enableIfOn('view_expand_seasons', viewExpandSeasons);
+    enableIfOn('view_similar_remove', viewSimilarRemove);
+    enableIfOn('view_best_comments_remove', viewBestCommentsRemove);
 }
 
 function checkingUrlChange(callbackFunc) {
@@ -37,20 +36,10 @@ function checkingUrlChange(callbackFunc) {
     });
 }
 
-function enableIfOn(storageKey, callbackFunc, checkFunc) {
-    if (checkFunc()) {
-        browser.storage.local.get(storageKey).then(data => {
-            if (data[storageKey]) {
-                callbackFunc();
-            }
-        });
-    }
-}
-
-function enableIfOnAndNamePage(storageKey, callbackFunc) {
-    enableIfOn(storageKey, callbackFunc, isNamePage)
-}
-
-function enableIfOnAndViewShowPage(storageKey, callbackFunc) {
-    enableIfOn(storageKey, callbackFunc, isViewShowPage)
+function enableIfOn(storageKey, callbackFunc) {
+    browser.storage.local.get(storageKey).then(data => {
+        if (data[storageKey]) {
+            callbackFunc();
+        }
+    });
 }
