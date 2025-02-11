@@ -1,5 +1,16 @@
-function isViewPage() {
-    return window.location.pathname.substring(1, 5) === 'view';
+function isViewShowPage() {
+    const viewShowPage = new RegExp(`^/view/\\d+/$`);
+    return viewShowPage.test(window.location.pathname);
+}
+
+function isViewEpisodePage() {
+    const viewShowPage = new RegExp(`^/view/episode/\\d+/$`);
+    return viewShowPage.test(window.location.pathname);
+}
+
+function isViewRatingPage() {
+    const viewShowPage = new RegExp(`^/view/\\d+/rating/$`);
+    return viewShowPage.test(window.location.pathname);
 }
 
 function viewCompact() {
@@ -14,25 +25,25 @@ function viewNavigationRemove() {
 }
 
 function viewStyleOld() {
-    let pageMain = $('.Page__main');
-    let pageAside = $('.Page__aside');
-    let content = $('.DefaultLayout__content');
-    let pageAsideWidth = content.width() * 0.25;
+    const pageMain = $('.Page__main');
+    const pageAside = $('.Page__aside');
+    const content = $('.DefaultLayout__content');
+    const pageAsideWidth = content.width() * 0.25;
 
     pageAside.css('width', pageAsideWidth + 'px');
     pageMain.css('max-width', 'calc(100% - ' + pageAsideWidth + 'px)');
 
-    let details = $('.ShowDetails');
-    let detailsTop = details.children(':first');
-    let detailsPoster = $('.ShowDetails-poster');
-    let detailsStatus = $('.ShowDetails-status');
-    let detailsInfo = detailsStatus.next();
-    let detailsDesc = detailsInfo.next();
+    const details = $('.ShowDetails');
+    const detailsTop = details.children(':first');
+    const detailsPoster = $('.ShowDetails-poster');
+    const detailsStatus = $('.ShowDetails-status');
+    const detailsInfo = detailsStatus.next();
+    const detailsDesc = detailsInfo.next();
 
-    let detailsWidth = details.width();
-    let posterWidth = pageMain.width() * 0.6;
-    let posterHeight = posterWidth * 0.53 + '';
-    let infoWidth = detailsWidth - posterWidth;
+    const detailsWidth = details.width();
+    const posterWidth = pageMain.width() * 0.6;
+    const posterHeight = posterWidth * 0.53 + '';
+    const infoWidth = detailsWidth - posterWidth;
 
     details.css({
         'width': '100%',
@@ -54,9 +65,9 @@ function viewStyleOld() {
         'width': '100%',
     });
 
-    let infoRating = detailsInfo.children(':first');
-    let showRating = infoRating.find('.ShowRating');
-    let infoTable = infoRating.next();
+    const infoRating = detailsInfo.children(':first');
+    const showRating = infoRating.find('.ShowRating');
+    const infoTable = infoRating.next();
 
     infoRating.css({'margin': '0'});
     showRating.css({
@@ -105,7 +116,7 @@ function viewExpandSeasons() {
     $('div.episodes-by-season__season-row').each(function() {
         let iconOpenEl = $(this).find('svg.episodes-by-season__season-row_toggle-icon');
         if (!iconOpenEl.hasClass('opened')) {
-            $(this).click();
+            $(this).trigger('click');
         }
     });
 }

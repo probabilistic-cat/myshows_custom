@@ -5,21 +5,22 @@ $(document).ready(function(){
 
 function enable() {
     detectLanguage();
+    console.log('LANGUAGE IS: ' + language);
 
-    enableIfOnAndOldProfilePage('profile_stats', profileStats);
-    enableIfOnAndOldProfilePage('profile_status_label_old', profileStatusLabelOld);
-    enableIfOnAndOldProfilePage('profile_expand_show_lists', profileExpandShowLists);
-    enableIfOnAndOldProfilePage('profile_expand_newsfeed', profileExpandNewsfeed);
+    enableIfOnAndNamePage('name_stats', nameStats);
+    enableIfOnAndNamePage('name_status_label_old', nameStatusLabelOld);
+    enableIfOnAndNamePage('name_expand_show_lists', nameExpandShowLists);
+    enableIfOnAndNamePage('name_expand_newsfeed', nameExpandNewsfeed);
 
-    enableIfOnAndViewPage('view_compact', viewCompact);
-    enableIfOnAndViewPage('view_navigation_remove', viewNavigationRemove);
-    enableIfOnAndViewPage('view_style_old', viewStyleOld);
-    enableIfOnAndViewPage('view_report_remove', viewReportRemove);
-    enableIfOnAndViewPage('view_emoji_remove', viewEmojiRemove);
-    enableIfOnAndViewPage('view_note_share_remove', viewNoteShareRemove);
-    enableIfOnAndViewPage('view_expand_seasons', viewExpandSeasons);
-    enableIfOnAndViewPage('view_similar_remove', viewSimilarRemove);
-    enableIfOnAndViewPage('view_best_comments_remove', viewBestCommentsRemove);
+    enableIfOnAndViewShowPage('view_compact', viewCompact);
+    enableIfOnAndViewShowPage('view_navigation_remove', viewNavigationRemove);
+    enableIfOnAndViewShowPage('view_style_old', viewStyleOld);
+    enableIfOnAndViewShowPage('view_report_remove', viewReportRemove);
+    enableIfOnAndViewShowPage('view_emoji_remove', viewEmojiRemove);
+    enableIfOnAndViewShowPage('view_note_share_remove', viewNoteShareRemove);
+    enableIfOnAndViewShowPage('view_expand_seasons', viewExpandSeasons);
+    enableIfOnAndViewShowPage('view_similar_remove', viewSimilarRemove);
+    enableIfOnAndViewShowPage('view_best_comments_remove', viewBestCommentsRemove);
 }
 
 function checkingUrlChange(callbackFunc) {
@@ -46,10 +47,10 @@ function enableIfOn(storageKey, callbackFunc, checkFunc) {
     }
 }
 
-function enableIfOnAndOldProfilePage(storageKey, callbackFunc) {
-    enableIfOn(storageKey, callbackFunc, isOldProfilePage)
+function enableIfOnAndNamePage(storageKey, callbackFunc) {
+    enableIfOn(storageKey, callbackFunc, isNamePage)
 }
 
-function enableIfOnAndViewPage(storageKey, callbackFunc) {
-    enableIfOn(storageKey, callbackFunc, isViewPage)
+function enableIfOnAndViewShowPage(storageKey, callbackFunc) {
+    enableIfOn(storageKey, callbackFunc, isViewShowPage)
 }

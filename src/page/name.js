@@ -1,9 +1,18 @@
-function isOldProfilePage() {
-    const h1 = $('div.wrapper div.container.content main.col8._borderLeft h1');
-    return h1.length && h1.html() === window.location.pathname.substring(1);
+function isNamePage() {
+    const oldNameEl = $('div.wrapper div.container.content main.col8._borderLeft h1');
+    if (oldNameEl.length) {
+        return oldNameEl.html() === window.location.pathname.substring(1);
+    }
+
+    const nameEl = $('div.UserHeader__name');
+    if (nameEl.length) {
+        return nameEl.html().startsWith(window.location.pathname.substring(1));
+    }
+
+    return false;
 }
 
-function profileStats() {
+function nameStats() {
     $('div.statusBlocks div.statusBlock').each(function (index) {
         if (index > 2) {
             return false;
@@ -25,16 +34,16 @@ function profileStats() {
     })
 }
 
-function profileStatusLabelOld() {
+function nameStatusLabelOld() {
     addGlobalCss(['sup.status {background-color: transparent !important; background-position-x: -60px !important}']);
 }
 
-function profileExpandShowLists() {
+function nameExpandShowLists() {
     $('a.linkPseudo.show-shows span').each(function() {
-        $(this).click();
+        $(this).trigger('click');
     });
 }
 
-function profileExpandNewsfeed() {
-    $('a.linkPseudo.show-news span').click();
+function nameExpandNewsfeed() {
+    $('a.linkPseudo.show-news span').trigger('click');
 }

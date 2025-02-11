@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    checkboxPropAndSave('profile_stats');
-    checkboxPropAndSave('profile_status_label_old');
-    checkboxPropAndSave('profile_expand_show_lists');
-    checkboxPropAndSave('profile_expand_newsfeed');
+    checkboxPropAndSave('name_stats');
+    checkboxPropAndSave('name_status_label_old');
+    checkboxPropAndSave('name_expand_show_lists');
+    checkboxPropAndSave('name_expand_newsfeed');
     checkboxPropAndSave('view_compact');
     checkboxPropAndSave('view_navigation_remove');
     checkboxPropAndSave('view_style_old');
@@ -21,7 +21,7 @@ function checkboxPropAndSave(checkboxId) {
         checkbox.prop('checked', data[checkboxId] || false);
     });
 
-    checkbox.change(function() {
+    checkbox.on('change', function() {
         let checkboxValue = $(this).is(':checked');
         browser.storage.local.set({[checkboxId]: checkboxValue});
     });

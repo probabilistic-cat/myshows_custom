@@ -1,7 +1,16 @@
 let language = 'en';
 
 function detectLanguage() {
-    language = $('.langSwitcher__selected .lang__label').html();
+    const oldLangEl = $('.langSwitcher__selected .lang__label');
+    if (oldLangEl.length) {
+        language = oldLangEl.html();
+        return;
+    }
+
+    const langEl = $('.LangSwitcher-current .LangSwitcher-optionText');
+    if (langEl) {
+        language = langEl.html();
+    }
 }
 
 function addGlobalCss(cssItems) {
