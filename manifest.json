@@ -22,7 +22,8 @@
         ],
         "js": [
             "jquery-3.7.1.slim.min.js",
-            "src/common.js",
+            "common/consts.js",
+            "src/utils.js",
             "src/page/name.js",
             "src/page/view.js",
             "src/content.js"

@@ -1,16 +1,15 @@
-let language = 'en';
-
-function detectLanguage() {
+function getLang() {
     const oldLangEl = $('.langSwitcher__selected .lang__label');
     if (oldLangEl.length) {
-        language = oldLangEl.html();
-        return;
+        return oldLangEl.html();
     }
 
     const langEl = $('.LangSwitcher-current .LangSwitcher-optionText');
     if (langEl) {
-        language = langEl.html();
+        return langEl.html();
     }
+
+    return LANG_EN;
 }
 
 function addGlobalCss(cssItems) {
@@ -20,4 +19,3 @@ function addGlobalCss(cssItems) {
         document.head.appendChild(style);
     }
 }
-

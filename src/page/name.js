@@ -8,11 +8,7 @@ function isNewNamePage() {
     return nameEl.length && nameEl.html().startsWith(window.location.pathname.substring(1));
 }
 
-function isNamePage() {
-    return isOldNamePage() || isNewNamePage();
-}
-
-function nameStats() {
+function nameStats(lang) {
     if (isOldNamePage()) {
         $('div.statusBlocks div.statusBlock').each(function(index) {
             if (index > 2) {
@@ -24,21 +20,20 @@ function nameStats() {
             const value = parseInt(subDiv.html().substring(0, spanPos).replace(' ', ''));
             const max = Math.round(value / percent * 100);
 
-            let of = 'of';
-            if (language === 'ru') {
-                of = 'от';
-            } else if (language === 'ua') {
-                of = 'від';
-            }
+            const of = {[LANG_EN]: 'of', [LANG_RU]: 'от', [LANG_UA]: 'від'};
 
-            subDiv.append('<span style="margin-top: 10px;">' + percent + '% ' + of + ' <b>' + max + '</b></span>');
+            subDiv.append('<span style="margin-top: 10px;">' + percent + '% ' + of[lang] + ' <b>' + max
+                + '</b></span>'
+            );
         })
     }
 }
 
 function nameStatusLabelOld() {
     if (isOldNamePage()) {
-        addGlobalCss(['sup.status {background-color: transparent !important; background-position-x: -60px !important}']);
+        addGlobalCss([
+            'sup.status {background-color: transparent !important; background-position-x: -60px !important}'
+        ]);
     }
 }
 

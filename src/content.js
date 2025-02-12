@@ -4,9 +4,9 @@ $(document).ready(function(){
 });
 
 function enable() {
-    detectLanguage();
+    const lang = getLang();
 
-    enableIfOn('name_stats', nameStats);
+    enableIfOn('name_stats', function() {nameStats(lang)});
     enableIfOn('name_status_label_old', nameStatusLabelOld);
     enableIfOn('name_expand_show_lists', nameExpandShowLists);
     enableIfOn('name_expand_newsfeed', nameExpandNewsfeed);
