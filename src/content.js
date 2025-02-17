@@ -20,6 +20,7 @@ function enable() {
     enableIfOn('view_expand_seasons', viewExpandSeasons);
     enableIfOn('view_similar_remove', viewSimilarRemove);
     enableIfOn('view_best_comments_remove', viewBestCommentsRemove);
+    enableIfOn('view_accurate_rating', viewRatingAccurate);
 }
 
 function checkingUrlChange(callbackFunc) {

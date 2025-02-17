@@ -15,5 +15,6 @@ const optionsList = [
         {id: 'view_expand_seasons', name: 'Раскрывать все сезоны на странице сериала', default: true},
         {id: 'view_similar_remove', name: 'Убрать похожие сериалы', default: true},
         {id: 'view_best_comments_remove', name: 'Убрать лучшие комментарии', default: true},
+        {id: 'view_accurate_rating', name: 'Точный рейтинг серий (+ рейтинг столбиками)', default: true},
     ]},
 ];

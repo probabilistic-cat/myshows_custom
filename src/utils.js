@@ -19,3 +19,13 @@ function addGlobalCss(cssItems) {
         document.head.appendChild(style);
     }
 }
+
+function pad(str, max) {
+    str = str.toString();
+    return (str.length < max) ? pad('0' + str, max) : str;
+}
+
+function round(number, decimalsCount) {
+    const multiplier = Math.pow(10, decimalsCount);
+    return (Math.round(number * multiplier) / multiplier);
+}
