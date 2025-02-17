@@ -1,4 +1,4 @@
-const optionsList = [
+const optionList = [
     {id: 'name', name: 'Профиль', children: [
         {id: 'name_stats', name: 'Статистика', default: true},
         {id: 'name_status_label_old', name: 'Старый значок статуса сериала (в старом дизайне)', default: true},

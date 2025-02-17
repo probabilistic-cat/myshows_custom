@@ -1,7 +1,7 @@
 $(document).ready(function() {
-    renderPopupHtml(optionsList);
-    setCheckboxesValues(optionsList);
-    handleCheckboxesChecks(optionsList);
+    renderPopupHtml(optionList);
+    setCheckboxesValues(optionList);
+    handleCheckboxesChecks(optionList);
 });
 
 function renderPopupHtml(options) {
@@ -17,7 +17,7 @@ function getPopupHtml(options, marginLeft) {
         style += 'margin-top: 10px; margin-bottom: 5px; font-weight: bold; ';
     }
 
-    options.forEach(function(option) {
+    for (const option of options) {
         html += '<div class="option" style="' + style + '">';
         html += '<input type="checkbox" id="' + option.id + '"> ' + option.name;
         html += '</div>';
@@ -25,23 +25,23 @@ function getPopupHtml(options, marginLeft) {
         if (option.children) {
             html += getPopupHtml(option.children, marginLeft + 15);
         }
-    });
+    }
 
     return html;
 }
 
 function setCheckboxesValues(options) {
-    options.forEach(function(option) {
+    for (const option of options) {
         setCheckboxValue(option.id, option.default);
 
         if (option.children) {
             setCheckboxesValues(option.children)
         }
-    });
+    }
 }
 
 function handleCheckboxesChecks(options) {
-    options.forEach(function(option) {
+    for (const option of options) {
         const checkbox = $('#' + option.id);
 
         checkbox.on('change', function() {
@@ -49,17 +49,17 @@ function handleCheckboxesChecks(options) {
             storageSet(option.id, checked);
 
             if (option.children) {
-                option.children.forEach(function(subOption) {
-                    storageSet(subOption.id, checked);
-                    setCheckboxValue(subOption.id);
-                });
+                for (const child of option.children) {
+                    storageSet(child.id, checked);
+                    setCheckboxValue(child.id);
+                }
             }
         });
 
         if (option.children) {
             handleCheckboxesChecks(option.children)
         }
-    });
+    }
 }
 
 function setCheckboxValue(id, defaultValue) {

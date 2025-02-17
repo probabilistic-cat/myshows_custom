@@ -23,13 +23,14 @@
         "js": [
             "jquery-3.7.1.slim.min.js",
             "common/consts.js",
-            "src/utils.js",
-            "src/page/name.js",
-            "src/page/viewCommon.js",
-            "src/page/viewEpisode.js",
-            "src/page/viewRating.js",
-            "src/page/viewShow.js",
-            "src/page/view.js",
+            "src/service/Utils.js",
+            "src/page/Name.js",
+            "src/page/ViewEpisode.js",
+            "src/page/ViewRating.js",
+            "src/page/ViewShow.js",
+            "src/page/View.js",
+            "src/service/OptionHandler.js",
+            "src/service/PageObserver.js",
             "src/content.js"
         ]
     }]
