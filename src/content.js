@@ -11,13 +11,13 @@ function enable() {
     enableIfOn('name_expand_show_lists', nameExpandShowLists);
     enableIfOn('name_expand_newsfeed', nameExpandNewsfeed);
 
-    enableIfOn('view_compact', viewCompact);
-    enableIfOn('view_navigation_remove', viewNavigationRemove);
-    enableIfOn('view_style_old', viewStyleOld);
-    enableIfOn('view_report_remove', viewReportRemove);
+    enableIfOn('view_compact', viewShowCompact);
+    enableIfOn('view_navigation_remove', viewShowNavigationRemove);
+    enableIfOn('view_style_old', viewShowStyleOld);
+    enableIfOn('view_report_remove', viewShowReportRemove);
     enableIfOn('view_emoji_remove', viewEmojiRemove);
-    enableIfOn('view_note_share_remove', viewNoteShareRemove);
-    enableIfOn('view_expand_seasons', viewExpandSeasons);
+    enableIfOn('view_note_share_remove', viewShowNoteShareRemove);
+    enableIfOn('view_expand_seasons', viewShowExpandSeasons);
     enableIfOn('view_similar_remove', viewSimilarRemove);
     enableIfOn('view_best_comments_remove', viewBestCommentsRemove);
     enableIfOn('view_accurate_rating', viewRatingAccurate);

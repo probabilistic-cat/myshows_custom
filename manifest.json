@@ -25,6 +25,10 @@
             "common/consts.js",
             "src/utils.js",
             "src/page/name.js",
+            "src/page/viewCommon.js",
+            "src/page/viewEpisode.js",
+            "src/page/viewRating.js",
+            "src/page/viewShow.js",
             "src/page/view.js",
             "src/content.js"
         ]
