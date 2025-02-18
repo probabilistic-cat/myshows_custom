@@ -1,12 +1,17 @@
+const VALUE_TRUE = true;
+const VALUE_FALSE = false;
+const VALUE_INDETERMINATE = 'indeterminate';
+
 $(document).ready(function() {
     renderPopupHtml(optionList);
-    setCheckboxesValues(optionList);
+    renderCheckboxesValues(optionList);
+    //fixRecursiveValues(optionList);
     handleCheckboxesChecks(optionList);
 });
 
 function renderPopupHtml(options) {
     const html = getPopupHtml(options, 0);
-    $('body').html(html);
+    $('div.container').html(html);
 }
 
 function getPopupHtml(options, marginLeft) {
@@ -19,7 +24,7 @@ function getPopupHtml(options, marginLeft) {
 
     for (const option of options) {
         html += '<div class="option" style="' + style + '">';
-        html += '<input type="checkbox" id="' + option.id + '"> ' + option.name;
+        html += '<input class="checkbox" type="checkbox" id="' + option.id + '"> ' + option.name;
         html += '</div>';
 
         if (option.children) {
@@ -30,45 +35,119 @@ function getPopupHtml(options, marginLeft) {
     return html;
 }
 
-function setCheckboxesValues(options) {
+function renderCheckboxesValues(options) {
     for (const option of options) {
-        setCheckboxValue(option.id, option.default);
+        renderCheckboxValue(option.id, option.default);
 
-        if (option.children) {
-            setCheckboxesValues(option.children)
+        if (option.hasOwnProperty('children')) {
+            renderCheckboxesValues(option.children)
         }
     }
 }
 
-function handleCheckboxesChecks(options) {
+function handleCheckboxesChecks(options, parent = null) {
     for (const option of options) {
+        const parentValue = (parent !== null) ? getCheckboxValue(parent.id) : null;
         const checkbox = $('#' + option.id);
 
         checkbox.on('change', function() {
-            const checked = $(this).is(':checked');
-            storageSet(option.id, checked);
+            const value = $(this).is(':checked');
+            setOptionValueRecursive(option, value);
 
-            if (option.children) {
-                for (const child of option.children) {
-                    storageSet(child.id, checked);
-                    setCheckboxValue(child.id);
-                }
+            if (
+                option.hasOwnProperty('requireParent') && option.requireParent === true
+                && parentValue === VALUE_FALSE && value === VALUE_TRUE
+            ) {
+                setOptionValue(parent.id, value);
             }
+
+            //fixRecursiveValues(optionList);
         });
 
         if (option.children) {
-            handleCheckboxesChecks(option.children)
+            handleCheckboxesChecks(option.children, option);
         }
     }
 }
 
-function setCheckboxValue(id, defaultValue) {
+function getCheckboxValue(id) {
+    const checkbox = $('#' + id);
+    if (checkbox.prop('indeterminate') === true) {
+        return VALUE_INDETERMINATE;
+    } else {
+        return checkbox.prop('checked');
+    }
+}
+
+function setOptionValue(id, value) {
+    storageSet(id, value);
+    renderCheckboxValue(id);
+}
+
+function setOptionValueRecursive(option, value) {
+    setOptionValue(option.id, value);
+
+    if (option.hasOwnProperty('children')) {
+        if (option.hasOwnProperty('recursive') && option.recursive === true) {
+            for (const child of option.children) {
+                setOptionValueRecursive(child, value);
+            }
+        }
+        for (const child of option.children) {
+            if (child.hasOwnProperty('requireParent') && child.requireParent === true && value === VALUE_FALSE) {
+                setOptionValue(child.id, value);
+            }
+        }
+    }
+}
+
+function fixRecursiveValues(options) {
+    for (const option of options) {
+        if (option.hasOwnProperty('children')) {
+            if (option.hasOwnProperty('recursive') && option.recursive === true) {
+                let allChildsTrue = true;
+                let allChildsFalse = true;
+
+                for (const child of option.children) {
+                    const childValue = getCheckboxValue(child.id);
+                    if (childValue !== VALUE_TRUE) {
+                        allChildsTrue = false;
+                    }
+                    if (childValue !== VALUE_FALSE) {
+                        allChildsFalse = false;
+                    }
+                }
+
+                let value = VALUE_INDETERMINATE;
+                if (allChildsTrue === true) {
+                    value = VALUE_TRUE;
+                }
+                if (allChildsFalse === true) {
+                    value = VALUE_FALSE;
+                }
+
+                setOptionValue(option.id, value);
+            }
+
+            fixRecursiveValues(option.children);
+        }
+    }
+}
+
+function renderCheckboxValue(id, defaultValue) {
     storageGet(id, function(value) {
         if (value === undefined) {
-            value = (defaultValue !== undefined) ? defaultValue : false;
+            value = (defaultValue !== undefined) ? defaultValue : VALUE_FALSE;
             storageSet(id, value);
         }
-        $('#' + id).prop('checked', value);
+
+        const checkbox = $('#' + id);
+        if (value === VALUE_INDETERMINATE) {
+            checkbox.prop('indeterminate', true);
+        } else {
+            checkbox.prop('indeterminate', false);
+            checkbox.prop('checked', value);
+        }
     });
 }
 
