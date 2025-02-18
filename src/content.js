@@ -1,4 +1,6 @@
-$(document).ready(function(){
-    PageObserver.checkingTitleChange(() => OptionHandler.enable());
-    OptionHandler.enable();
+$(document).ready(async function() {
+    PageObserver.checkingTitleChange(async () => {
+        await OptionHandler.enable();
+    });
+    await OptionHandler.enable();
 });
