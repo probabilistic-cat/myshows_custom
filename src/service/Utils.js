@@ -23,7 +23,7 @@ class Utils {
 
     static pad(str, max) {
         str = str.toString();
-        return (str.length < max) ? pad('0' + str, max) : str;
+        return (str.length < max) ? this.pad('0' + str, max) : str;
     }
 
     static round(number, decimalsCount) {

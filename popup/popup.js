@@ -2,7 +2,7 @@ const VALUE_TRUE = true;
 const VALUE_FALSE = false;
 const VALUE_INDETERMINATE = 'indeterminate';
 
-$(document).ready(async function() {
+$(async function() {
     renderPopupHtml(optionList);
     await renderCheckboxesValues(optionList);
     await fixRecursiveValues(optionList);
