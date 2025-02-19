@@ -1,4 +1,6 @@
 class ViewRating {
+    static #SPECIAL_NUM = 0;
+
     static removeEmoji() {
         if (this.#isViewRatingPage()) {
             View.removeEmojiCommon();
@@ -13,15 +15,21 @@ class ViewRating {
         }
     }
 
-    static makeRatingAccurate() {
+    static makeRatingAccurate(renderBars) {
         if (this.#isViewRatingPage()) {
             setTimeout(() => {
                 const jsonData = $('#__NUXT_DATA__').html();
                 const data = JSON.parse(jsonData);
 
-                const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data);
-                this.#makeRatingTableAccurate(seasonsData, episodesData);
-                this.#renderRatingChart(seasonsData, episodesData);
+                if (this.#isDataAvailable(data)) {
+                    const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data);
+                    this.#makeRatingTableAccurate(seasonsData, episodesData);
+                    if (renderBars) {
+                        this.#renderRatingBars(seasonsData, episodesData);
+                    }
+                } else {
+                    this.#showNoDataWarning();
+                }
             }, 250);
         }
     }
@@ -29,6 +37,17 @@ class ViewRating {
     static #isViewRatingPage() {
         const viewShowPage = new RegExp(`^/view/\\d+/rating/$`);
         return viewShowPage.test(window.location.pathname);
+    }
+
+    static #isDataAvailable(data) {
+        return data[4].hasOwnProperty('seasonRatings');
+    }
+
+    static #showNoDataWarning() {
+        let html = '<div class="ShowRatingAccurateWarning" style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">';
+        html += 'Перезагрузите страницу, чтобы получить точный рейтинг.';
+        html += '</div>';
+        $(html).insertBefore('div.ShowRatingTable');
     }
 
     static #getSeasonsAndEpisodesData(data) {
@@ -41,12 +60,17 @@ class ViewRating {
             for (const episode2Key of episodes2Keys) {
                 const episodeId = data[data[episode2Key].episodeId];
                 const seasonNum = data[data[episode2Key].seasonNumber];
+                const episodeNum = data[data[episode2Key].episodeNumber];
                 const rating = data[data[episode2Key].rating];
+
+                if (episodeNum === this.#SPECIAL_NUM) {
+                    continue;
+                }
 
                 episodesData[episodeId] = {
                     id: episodeId,
                     season: seasonNum,
-                    episode: data[data[episode2Key].episodeNumber],
+                    episode: episodeNum,
                     rating: rating,
                     votes: data[data[episode2Key].votes],
                 };
@@ -63,7 +87,9 @@ class ViewRating {
         const episodes1Keys = data[data[5].episodes];
         for (const episode1Key of episodes1Keys) {
             const episodeId = data[data[episode1Key].id];
-            episodesData[episodeId].date = data[data[episode1Key].airDateUTC];
+            if (episodesData.hasOwnProperty(episodeId)) {
+                episodesData[episodeId].date = data[data[episode1Key].airDateUTC];
+            }
         }
 
         return [seasonsData, episodesData];
@@ -92,7 +118,7 @@ class ViewRating {
         });
     }
 
-    static #renderRatingChart(seasonsData, episodesData) {
+    static #renderRatingBars(seasonsData, episodesData) {
         const [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
         const barsCellsData = this.#getBarsCellsData(minRating, maxRating);
         const backgroundColor = $('.Page__main').css('--content-background');
@@ -203,7 +229,7 @@ class ViewRating {
                     episodeData.rating, barsCellsData.minRatingLimit,
                     barsCellsData.maxRatingLimit, barHeightMax
                 ), 2);
-                const episodeNumDisplay = (episodeData.episode !== 0) ? episodeData.episode : 'special';
+                const episodeNumDisplay = (episodeData.episode !== this.#SPECIAL_NUM) ? episodeData.episode : 'special';
                 let episodeNumBorderStyle = '';
                 if (episodeNum > 1) {
                     episodeNumBorderStyle += 'border-left: ' + graphLine + ';';

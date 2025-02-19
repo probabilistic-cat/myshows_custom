@@ -16,7 +16,9 @@ class OptionHandler {
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
         await this.#enableIfOn('view_similar_remove', () => ViewShow.removeSimilar());
         await this.#enableIfOn('view_best_comments_remove', () => View.removeBestComments());
-        await this.#enableIfOn('view_accurate_rating', () => ViewRating.makeRatingAccurate());
+
+        const renderBars = await this.#isOptionOn('view_accurate_rating_bars');
+        await this.#enableIfOn('view_accurate_rating', () => ViewRating.makeRatingAccurate(renderBars));
     }
 
     static async #enableIfOn(storageKey, callbackFunc) {
