@@ -9,10 +9,10 @@ class OptionHandler {
 
         await this.#enableIfOn('view_compact', () => ViewShow.compact());
         await this.#enableIfOn('view_navigation_remove', () => ViewShow.removeNavigation());
-        await this.#enableIfOn('view_style_old', () => ViewShow.styleOld());
+        await this.#enableIfOn('view_style_old', () => View.styleOld());
         await this.#enableIfOn('view_report_remove', () => ViewShow.removeReport());
         await this.#enableIfOn('view_emoji_remove', () => View.removeEmoji());
-        await this.#enableIfOn('view_note_share_remove', () => ViewShow.removeNoteShare());
+        await this.#enableIfOn('view_note_share_remove', () => View.removeNoteShare());
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
         await this.#enableIfOn('view_similar_remove', () => ViewShow.removeSimilar());
         await this.#enableIfOn('view_best_comments_remove', () => View.removeBestComments());

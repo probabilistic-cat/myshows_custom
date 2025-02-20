@@ -17,24 +17,17 @@ class ViewShow {
     static styleOld() {
         if (this.#isViewShowPage()) {
             const pageMain = $('.Page__main');
-            //const pageAside = $('.Page__aside');
-            //const content = $('.DefaultLayout__content');
-            //const pageAsideWidth = content.width() * 0.25;
-
-            //pageAside.css('width', pageAsideWidth + 'px');
-            //pageMain.css('max-width', 'calc(100% - ' + pageAsideWidth + 'px)');
 
             const details = $('.ShowDetails');
             const detailsTop = details.children(':first');
-            const detailsPoster = $('.ShowDetails-poster');
-            const detailsStatus = $('.ShowDetails-status');
+            const detailsPoster = details.find('div.ShowDetails-poster');
+            const detailsStatus = details.find('div.ShowDetails-status');
             const detailsInfo = detailsStatus.next();
             const detailsDesc = detailsInfo.next();
 
-            const detailsWidth = details.width();
             const posterWidth = pageMain.width() * 0.6;
             const posterHeight = posterWidth * 0.53 + '';
-            const infoWidth = detailsWidth - posterWidth;
+            const infoWidth = details.width() - posterWidth;
 
             details.css({
                 'width': '100%',
@@ -56,34 +49,36 @@ class ViewShow {
                 'width': '100%',
             });
 
+
             const infoRating = detailsInfo.children(':first');
-            const showRating = infoRating.find('.ShowRating');
-            const infoTable = infoRating.next();
+            const showRating = infoRating.find('div.ShowRating');
+            const showRatingInfo = showRating.find('div.ShowRating-info');
+            const showRatingValue = showRating.find('div.ShowRating-value');
+            const showRatingInfoTitle = showRatingInfo.find('div.ShowRating-title');
+            const showRatingInfoStars = showRatingInfo.find('div.ShowRating__stars-wrapper');
 
             infoRating.css({'margin': '0'});
             showRating.css({
                 'width': '100%',
                 'display': 'grid',
-                'grid-template-rows': '25px 25px',
+                'grid-template-rows': '20px 28px',
                 'grid-template-columns': infoWidth + 'px',
                 'gap': '0',
             });
-            $('.ShowRating-info').css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
-            $('.ShowRating-value').css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
-            $('.ShowRating-title').css({'width': '50%', 'margin-right': '0'});
-            $('.ShowRating__stars-wrapper').css({'width': '50%'});
+            showRatingInfo.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
+            showRatingValue.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
+            showRatingInfoTitle.css({'width': '50%', 'margin-right': '0'});
+            showRatingInfoStars.css({'width': '50%'});
 
-            $('.info-table td').css({'font-size': '14px', 'padding': '1px 0'});
-            $('.info-row__title').css({'width': '140px'});
-            $('.info-row__value').css({'width': 'auto'});
+            View.InfoTable();
 
-            $('.ShowDetails-report').css({
+
+            detailsInfo.find('div.ShowDetails-report').css({
                 'border-top': '1px solid var(--border-section-color)',
                 'padding-top': '10px',
             });
-            infoTable.css({'border-bottom': '0'});
 
-            detailsDesc.find('.ShowTabs').css({
+            detailsDesc.find('div.ShowTabs').css({
                 'border-top': '1px solid var(--border-section-color)',
                 'padding-top': '20px',
             });
