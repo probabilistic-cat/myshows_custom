@@ -1,25 +1,4 @@
 class View {
-    static styleOld() {
-        ViewEpisode.styleOld();
-        ViewShow.styleOld();
-    }
-
-    static removeEmoji() {
-        ViewShow.removeEmoji();
-        ViewRating.removeEmoji()
-    }
-
-    static removeNoteShare() {
-        ViewEpisode.removeNoteShare();
-        ViewShow.removeNoteShare();
-    }
-
-    static removeBestComments() {
-        ViewShow.removeBestComments();
-        ViewRating.removeBestComments();
-    }
-
-
     static removeEmojiCommon() {
         $('.ShowDetails__reactions').hide();
     }

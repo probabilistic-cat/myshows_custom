@@ -25,10 +25,10 @@
             "common/consts.js",
             "src/service/Utils.js",
             "src/page/Name.js",
+            "src/page/View.js",
             "src/page/ViewEpisode.js",
             "src/page/ViewRating.js",
             "src/page/ViewShow.js",
-            "src/page/View.js",
             "src/service/OptionHandler.js",
             "src/service/PageObserver.js",
             "src/content.js"
