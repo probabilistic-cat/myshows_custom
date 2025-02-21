@@ -6,8 +6,6 @@ class ViewEpisode
     }
 
     static styleOld() {
-        //return false;
-
         if (this.#isViewEpisodePage()) {
             const pageMain = $('.Page__main');
 

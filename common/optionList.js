@@ -1,12 +1,16 @@
 const optionList = [
+    {id: 'common', name: 'Общие', recursive: true, children: [
+        {id: 'common_compact', name: 'Компактный вид', default: true},
+    ]},
     {id: 'name', name: 'Профиль', recursive: true, children: [
         {id: 'name_stats', name: 'Статистика', default: true},
-        {id: 'name_status_label_old', name: 'Старый значок статуса сериала (в старом дизайне)', default: true},
         {id: 'name_expand_show_lists', name: 'Раскрывать списки сериалов', default: true},
-        {id: 'name_expand_newsfeed', name: 'Раскрывать ленту событий', default: false},
+        {id: 'name_news_remove', name: 'Убрать новости', default: true},
+        {id: 'name_recommendations_remove', name: 'Убрать рекомендации', default: true},
+        {id: 'name_status_label_old', name: 'Классический значок статуса сериала (в старом дизайне)', default: true},
+        {id: 'name_expand_newsfeed', name: 'Раскрывать ленту событий (в старом дизайне)', default: false},
     ]},
     {id: 'view', name: 'Страницы сериала', recursive: true, children: [
-        {id: 'view_compact', name: 'Компактный вид', default: true},
         {id: 'view_navigation_remove', name: 'Убрать навигацию', default: true},
         {id: 'view_style_old', name: 'Старый стиль', default: true},
         {id: 'view_report_remove', name: 'Убрать "Нашли ошибку?"', default: true},
