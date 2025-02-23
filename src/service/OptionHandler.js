@@ -4,7 +4,7 @@ class OptionHandler {
 
         // common
         await this.#enableIfOn('common_compact', () => {
-            Name.compact();
+            ProfileName.compact();
             Profile.compact();
             ProfileCalendar.compact();
             ProfileFriends.compact();
@@ -13,17 +13,17 @@ class OptionHandler {
         await this.#enableIfOn('common_classic_status_label', () => Common.classicStatusLabel());
 
         // profile
-        await this.#enableIfOn('profile_stats', () => Name.stats(lang));
+        await this.#enableIfOn('profile_stats', () => ProfileName.stats(lang));
         await this.#enableIfOn('profile_expand_show_lists', () => {
-            Name.expandShowLists();
+            ProfileName.expandShowLists();
             ProfileCalendar.expandShowLists();
         });
         await this.#enableIfOn('profile_news_remove', () => {
-            Name.removeNewsBlock();
+            ProfileName.removeNewsBlock();
             ProfileCalendar.removeNewsBlock();
         });
-        await this.#enableIfOn('profile_recommendations_remove', () => Name.removeRecommendationsBlock());
-        await this.#enableIfOn('profile_expand_newsfeed', () => Name.expandNewsfeed());
+        await this.#enableIfOn('profile_recommendations_remove', () => ProfileName.removeRecommendationsBlock());
+        await this.#enableIfOn('profile_expand_newsfeed', () => ProfileName.expandNewsfeed());
 
         // view
         await this.#enableIfOn('view_navigation_remove', () => ViewShow.removeNavigation());

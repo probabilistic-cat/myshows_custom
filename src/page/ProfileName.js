@@ -1,7 +1,7 @@
-class Name
+class ProfileName
 {
     static compact() {
-        if (this.#isNewNamePage()) {
+        if (this.#isNewProfileNamePage()) {
             Utils.addGlobalCss(['div.UserShowItem_mode_compact {padding: 11px 0;}']);
             Utils.addGlobalCss([
                 'div.UserHeader {margin-top: 50px; padding-top: 15px; padding-bottom: 15px;}',
@@ -16,7 +16,7 @@ class Name
     }
 
     static stats(lang) {
-        if (this.#isOldNamePage()) {
+        if (this.#isOldProfileNamePage()) {
             $('div.statusBlocks div.statusBlock').each(function(index) {
                 if (index > 2) {
                     return false;
@@ -35,7 +35,7 @@ class Name
             })
         }
 
-        if (this.#isNewNamePage()) {
+        if (this.#isNewProfileNamePage()) {
             const percents = [];
             $('div.UserStatisticsProgress__bar-value').each(function() {
                 const value = Utils.round($(this).attr('style').match(/height:\s*([\d.]+)%/)[1], 2) + '%';
@@ -52,13 +52,13 @@ class Name
     }
 
     static expandShowLists() {
-        if (this.#isOldNamePage()) {
+        if (this.#isOldProfileNamePage()) {
             $('a.linkPseudo.show-shows span').each(function() {
                 $(this).trigger('click');
             });
         }
 
-        if (this.#isNewNamePage()) {
+        if (this.#isNewProfileNamePage()) {
             const showMore = $('div.UserShowsBlock__button-more');
             setTimeout(function() {
                 showMore.trigger('click');
@@ -75,29 +75,29 @@ class Name
     }
 
     static expandNewsfeed() {
-        if (this.#isOldNamePage()) {
+        if (this.#isOldProfileNamePage()) {
             $('a.linkPseudo.show-news span').trigger('click');
         }
     }
 
     static removeNewsBlock() {
-        if (this.#isNewNamePage()) {
+        if (this.#isNewProfileNamePage()) {
             $('div.UserNewsBlock').closest('div.UserBlock').hide();
         }
     }
 
     static removeRecommendationsBlock() {
-        if (this.#isNewNamePage()) {
+        if (this.#isNewProfileNamePage()) {
             $('div.UserRecommendationsBlock').closest('div.UserBlock').hide();
         }
     }
 
-    static #isOldNamePage() {
+    static #isOldProfileNamePage() {
         const nameEl = $('div.wrapper div.container.content main.col8._borderLeft h1');
         return nameEl.length && nameEl.html() === window.location.pathname.substring(1);
     }
 
-    static #isNewNamePage() {
+    static #isNewProfileNamePage() {
         const nameEl = $('div.UserHeader__name');
         return nameEl.length && nameEl.html().startsWith(window.location.pathname.substring(1));
     }
