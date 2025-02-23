@@ -100,7 +100,7 @@ async function fixRecursiveValues(options) {
                 let allChildsFalse = true;
 
                 for (const child of option.children) {
-                    let childValue = await getStorageData(child.id);
+                    const childValue = await getStorageData(child.id);
                     if (childValue !== VALUE_TRUE) {
                         allChildsTrue = false;
                     }
@@ -141,7 +141,7 @@ function renderCheckboxValue(id, value) {
 }
 
 async function getStorageData(id) {
-    let data = await browser.storage.local.get(id);
+    const data = await browser.storage.local.get(id);
     return data[id];
 }
 

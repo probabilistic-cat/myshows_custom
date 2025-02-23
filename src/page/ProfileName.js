@@ -16,6 +16,8 @@ class ProfileName
     }
 
     static stats(lang) {
+        const of = {[LANG_EN]: 'of', [LANG_RU]: 'от', [LANG_UA]: 'від'};
+
         if (this.#isOldProfileNamePage()) {
             $('div.statusBlocks div.statusBlock').each(function(index) {
                 if (index > 2) {
@@ -26,8 +28,6 @@ class ProfileName
                 const spanPos = subDiv.html().indexOf('<span>');
                 const value = parseInt(subDiv.html().substring(0, spanPos).replace(' ', ''));
                 const max = Math.round(value / percent * 100);
-
-                const of = {[LANG_EN]: 'of', [LANG_RU]: 'от', [LANG_UA]: 'від'};
 
                 subDiv.append('<span style="margin-top: 10px;">' + percent + '% ' + of[lang] + ' <b>' + max
                     + '</b></span>'
