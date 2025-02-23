@@ -3,7 +3,7 @@ class ViewRating {
 
     static removeEmoji() {
         if (this.#isViewRatingPage()) {
-            View.removeEmojiCommon();
+            ViewCommon.removeEmoji();
             $('h3.title__main-text:contains("Эмоциональная оценка")').closest('div.title.title__secondary').hide();
         }
     }

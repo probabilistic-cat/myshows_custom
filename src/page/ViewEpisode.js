@@ -1,10 +1,5 @@
 class ViewEpisode
 {
-    static #isViewEpisodePage() {
-        const viewShowPage = new RegExp(`^/view/episode/\\d+/$`);
-        return viewShowPage.test(window.location.pathname);
-    }
-
     static styleOld() {
         if (this.#isViewEpisodePage()) {
             const pageMain = $('.Page__main');
@@ -56,7 +51,7 @@ class ViewEpisode
             showRatingInfo.css({'grid-area': '1 / 2 / 2 / 3'});
             showRatingValue.css({'grid-area': '2 / 1 / 3 / 3'});
 
-            View.InfoTable();
+            ViewCommon.InfoTable();
         }
     }
 
@@ -65,5 +60,10 @@ class ViewEpisode
             $('div.episode-details__note').hide();
             $('div.episode-details__share').hide();
         }
+    }
+
+    static #isViewEpisodePage() {
+        const viewShowPage = new RegExp(`^/view/episode/\\d+/$`);
+        return viewShowPage.test(window.location.pathname);
     }
 }

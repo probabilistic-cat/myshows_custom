@@ -1,5 +1,6 @@
-class View {
-    static removeEmojiCommon() {
+class ViewCommon
+{
+    static removeEmoji() {
         $('.ShowDetails__reactions').hide();
     }
 

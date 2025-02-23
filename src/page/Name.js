@@ -34,6 +34,7 @@ class Name
                 );
             })
         }
+
         if (this.#isNewNamePage()) {
             const percents = [];
             $('div.UserStatisticsProgress__bar-value').each(function() {
@@ -50,25 +51,18 @@ class Name
         }
     }
 
-    static statusLabelOld() {
-        if (this.#isOldNamePage()) {
-            Utils.addGlobalCss([
-                'sup.status {background-color: transparent !important; background-position-x: -60px !important;}',
-            ]);
-        }
-    }
-
     static expandShowLists() {
         if (this.#isOldNamePage()) {
             $('a.linkPseudo.show-shows span').each(function() {
                 $(this).trigger('click');
             });
         }
+
         if (this.#isNewNamePage()) {
             const showMore = $('div.UserShowsBlock__button-more');
             setTimeout(function() {
                 showMore.trigger('click');
-            }, 100);
+            }, 150);
 
             const observer = new MutationObserver(() => {
                 if (showMore.length) {

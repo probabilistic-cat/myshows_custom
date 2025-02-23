@@ -1,14 +1,14 @@
 const optionList = [
     {id: 'common', name: 'Общие', recursive: true, children: [
         {id: 'common_compact', name: 'Компактный вид', default: true},
+        {id: 'common_classic_status_label', name: 'Классический значок статуса сериала', default: true},
     ]},
-    {id: 'name', name: 'Профиль', recursive: true, children: [
-        {id: 'name_stats', name: 'Статистика', default: true},
-        {id: 'name_expand_show_lists', name: 'Раскрывать списки сериалов', default: true},
-        {id: 'name_news_remove', name: 'Убрать новости', default: true},
-        {id: 'name_recommendations_remove', name: 'Убрать рекомендации', default: true},
-        {id: 'name_status_label_old', name: 'Классический значок статуса сериала (в старом дизайне)', default: true},
-        {id: 'name_expand_newsfeed', name: 'Раскрывать ленту событий (в старом дизайне)', default: false},
+    {id: 'profile', name: 'Профиль', recursive: true, children: [
+        {id: 'profile_stats', name: 'Статистика', default: true},
+        {id: 'profile_expand_show_lists', name: 'Раскрывать списки сериалов', default: true},
+        {id: 'profile_news_remove', name: 'Убрать новости', default: true},
+        {id: 'profile_recommendations_remove', name: 'Убрать рекомендации', default: true},
+        {id: 'profile_expand_newsfeed', name: 'Раскрывать ленту событий (в старом дизайне)', default: false},
     ]},
     {id: 'view', name: 'Страницы сериала', recursive: true, children: [
         {id: 'view_navigation_remove', name: 'Убрать навигацию', default: true},

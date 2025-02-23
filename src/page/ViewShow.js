@@ -70,7 +70,7 @@ class ViewShow {
             showRatingInfoTitle.css({'width': '50%', 'margin-right': '0'});
             showRatingInfoStars.css({'width': '50%'});
 
-            View.InfoTable();
+            ViewCommon.InfoTable();
 
 
             detailsInfo.find('div.ShowDetails-report').css({
@@ -93,7 +93,7 @@ class ViewShow {
 
     static removeEmoji() {
         if (this.#isViewShowPage()) {
-            View.removeEmojiCommon();
+            ViewCommon.removeEmoji();
         }
     }
 

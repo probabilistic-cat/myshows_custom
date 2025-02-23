@@ -2,18 +2,30 @@ class OptionHandler {
     static async enable() {
         const lang = Utils.getLang();
 
+        // common
         await this.#enableIfOn('common_compact', () => {
             Name.compact();
+            Profile.compact();
+            ProfileCalendar.compact();
+            ProfileFriends.compact();
             ViewShow.compact();
         });
+        await this.#enableIfOn('common_classic_status_label', () => Common.classicStatusLabel());
 
-        await this.#enableIfOn('name_stats', () => Name.stats(lang));
-        await this.#enableIfOn('name_status_label_old', () => Name.statusLabelOld());
-        await this.#enableIfOn('name_expand_show_lists', () => Name.expandShowLists());
-        await this.#enableIfOn('name_expand_newsfeed', () => Name.expandNewsfeed());
-        await this.#enableIfOn('name_news_remove', () => Name.removeNewsBlock());
-        await this.#enableIfOn('name_recommendations_remove', () => Name.removeRecommendationsBlock());
+        // profile
+        await this.#enableIfOn('profile_stats', () => Name.stats(lang));
+        await this.#enableIfOn('profile_expand_show_lists', () => {
+            Name.expandShowLists();
+            ProfileCalendar.expandShowLists();
+        });
+        await this.#enableIfOn('profile_news_remove', () => {
+            Name.removeNewsBlock();
+            ProfileCalendar.removeNewsBlock();
+        });
+        await this.#enableIfOn('profile_recommendations_remove', () => Name.removeRecommendationsBlock());
+        await this.#enableIfOn('profile_expand_newsfeed', () => Name.expandNewsfeed());
 
+        // view
         await this.#enableIfOn('view_navigation_remove', () => ViewShow.removeNavigation());
         await this.#enableIfOn('view_style_old', () => {
             ViewEpisode.styleOld();
@@ -36,7 +48,7 @@ class OptionHandler {
         });
         await this.#enableIfOn('view_accurate_rating', async () => {
             const renderBars = await this.#isOptionOn('view_accurate_rating_bars');
-            ViewRating.makeRatingAccurate(renderBars)
+            ViewRating.makeRatingAccurate(renderBars);
         });
     }
 
