@@ -1,6 +1,10 @@
 class ProfileName
 {
     static compact() {
+        if (this.#isOldProfileNamePage()) {
+            Utils.addGlobalCss(['.catalogTable td {padding-top: 8px; padding-bottom: 8px}']);
+        }
+
         if (this.#isNewProfileNamePage()) {
             Utils.addGlobalCss(['div.UserShowItem_mode_compact {padding: 11px 0;}']);
             Utils.addGlobalCss([
