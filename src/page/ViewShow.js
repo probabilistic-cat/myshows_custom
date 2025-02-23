@@ -106,12 +106,14 @@ class ViewShow {
 
     static expandSeasons() {
         if (this.#isViewShowPage()) {
-            $('div.episodes-by-season__season-row').each(function() {
-                const iconOpenEl = $(this).find('svg.episodes-by-season__season-row_toggle-icon');
-                if (!iconOpenEl.hasClass('opened')) {
-                    $(this).trigger('click');
-                }
-            });
+            setTimeout(() => {
+                $('div.episodes-by-season__season-row').each(function() {
+                    const iconOpenEl = $(this).find('svg.episodes-by-season__season-row_toggle-icon');
+                    if (!iconOpenEl.hasClass('opened')) {
+                        $(this).trigger('click');
+                    }
+                });
+            }, 100);
         }
     }
 
