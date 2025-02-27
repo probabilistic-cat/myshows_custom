@@ -113,7 +113,7 @@ class ViewShow {
                         $(this).trigger('click');
                     }
                 });
-            }, 100);
+            }, 250);
         }
     }
 

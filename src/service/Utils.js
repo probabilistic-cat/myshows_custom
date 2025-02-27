@@ -30,4 +30,8 @@ class Utils {
         const multiplier = Math.pow(10, decimalsCount);
         return (Math.round(number * multiplier) / multiplier);
     }
+
+    static getNumberLocaled(number) {
+        return number.toLocaleString('ru-RU');
+    }
 }

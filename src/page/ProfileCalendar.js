@@ -15,7 +15,7 @@ class ProfileCalendar {
                         $(this).trigger('click');
                     }
                 });
-            }, 200);
+            }, 250);
         }
     }
 
