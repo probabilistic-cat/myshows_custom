@@ -23,6 +23,7 @@
         "js": [
             "jquery-3.7.1.slim.min.js",
             "common/consts.js",
+            "common/optionList.js",
             "src/service/Utils.js",
             "src/page/Common.js",
             "src/page/Profile.js",

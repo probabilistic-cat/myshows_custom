@@ -59,7 +59,27 @@ class OptionHandler {
     }
 
     static async #isOptionOn(storageKey) {
+        let isOptionOn = await this.#getStorageValue(storageKey);
+        return (isOptionOn === undefined) ? this.#getOptionDefaultValue(storageKey, optionList) : isOptionOn;
+    }
+
+    static async #getStorageValue(storageKey) {
         const data = await browser.storage.local.get(storageKey);
         return data[storageKey];
+    }
+
+    static #getOptionDefaultValue(id, options) {
+        for (const option of options) {
+            if (option.id === id) {
+                return (option.hasOwnProperty('default')) ? option.default : null;
+            }
+
+            if (option.hasOwnProperty('children')) {
+                const defaultValue = this.#getOptionDefaultValue(id, option.children);
+                if (defaultValue !== undefined) {
+                    return defaultValue;
+                }
+            }
+        }
     }
 }
