@@ -106,7 +106,7 @@ class ProfileName
             const showMore = $('div.UserShowsBlock__button-more');
             setTimeout(function() {
                 showMore.trigger('click');
-            }, 250);
+            }, 500);
 
             const observer = new MutationObserver(() => {
                 if (showMore.length) {
