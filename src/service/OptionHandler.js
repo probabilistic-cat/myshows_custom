@@ -34,21 +34,21 @@ class OptionHandler {
         await this.#enableIfOn('view_report_remove', () => ViewShow.removeReport());
         await this.#enableIfOn('view_emoji_remove', () => {
             ViewShow.removeEmoji();
-            ViewRating.removeEmoji();
+            ViewRating.removeEmoji(lang);
         });
         await this.#enableIfOn('view_note_share_remove', () => {
             ViewEpisode.removeNoteShare();
             ViewShow.removeNoteShare();
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
-        await this.#enableIfOn('view_similar_remove', () => ViewShow.removeSimilar());
+        await this.#enableIfOn('view_similar_remove', () => ViewShow.removeSimilar(lang));
         await this.#enableIfOn('view_best_comments_remove', () => {
-            ViewShow.removeBestComments();
-            ViewRating.removeBestComments();
+            ViewShow.removeBestComments(lang);
+            ViewRating.removeBestComments(lang);
         });
         await this.#enableIfOn('view_accurate_rating', async () => {
             const renderBars = await this.#isOptionOn('view_accurate_rating_bars');
-            ViewRating.makeRatingAccurate(renderBars);
+            ViewRating.makeRatingAccurate(renderBars, lang);
         });
     }
 

@@ -10,7 +10,7 @@ class Utils {
             return langEl.html();
         }
 
-        return LANG_EN;
+        return LANG_RU;
     }
 
     static addGlobalCss(cssItems) {

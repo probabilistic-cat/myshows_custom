@@ -1,19 +1,31 @@
 class ProfileName
 {
-    static #STATS_EPISODES_TITLES = {
+    static #LANG_STATS_EPISODES = {
+        [LANG_EN]: ['episodes', 'episode'],
         [LANG_RU]: ['эпизодов', 'эпизода', 'эпизод'],
+        [LANG_UA]: ['епізодів', 'епізоди', 'епізод'],
     };
-    static #STATS_MOVIES_TITLES = {
+    static #LANG_STATS_MOVIES = {
+        [LANG_EN]: ['movies', 'movie'],
         [LANG_RU]: ['фильмов', 'фильма', 'фильм'],
+        [LANG_UA]: ['фільмів', 'фільми', 'фільм'],
     };
-    static #STATS_HOURS_TITLES = {
+    static #LANG_STATS_HOURS = {
+        [LANG_EN]: ['hours', 'hour'],
         [LANG_RU]: ['часов', 'часа', 'час'],
+        [LANG_UA]: ['годин', 'години', 'година'],
     };
-    static #STATS_DAYS_TITLES = {
+    static #LANG_STATS_DAYS = {
+        [LANG_EN]: ['days', 'day'],
         [LANG_RU]: ['дней', 'дня', 'день'],
+        [LANG_UA]: ['днів', 'дні', 'день'],
     };
 
-    static #STATS_OF = {[LANG_EN]: 'of', [LANG_RU]: 'от', [LANG_UA]: 'від'};
+    static #LANG_STATS_OF = {
+        [LANG_EN]: 'of',
+        [LANG_RU]: 'от',
+        [LANG_UA]: 'від',
+    };
 
     static compact() {
         if (this.#isOldProfileNamePage()) {
@@ -35,7 +47,7 @@ class ProfileName
     }
 
     static stats(lang) {
-        const of = this.#STATS_OF[lang];
+        const of = this.#LANG_STATS_OF[lang];
 
         if (this.#isOldProfileNamePage()) {
             $('div.statusBlocks div.statusBlock').each(function(index) {
@@ -74,22 +86,22 @@ class ProfileName
 
             Utils.addGlobalCss(['.UserHeader__stats-extra {flex: 3;}']);
             setTimeout(() => {
-                this.#renderStatsHeader(watchedEpisodes, totalEpisodes, this.#STATS_EPISODES_TITLES[lang], of);
-                this.#renderStatsHeader(watchedMovies, totalMovies, this.#STATS_MOVIES_TITLES[lang], of);
-                this.#renderStatsHeader(watchedHours, totalHours, this.#STATS_HOURS_TITLES[lang], of);
-                this.#renderStatsHeader(watchedDays, totalDays, this.#STATS_DAYS_TITLES[lang], of);
+                this.#renderStatsHeader(watchedEpisodes, totalEpisodes, this.#LANG_STATS_EPISODES[lang], of);
+                this.#renderStatsHeader(watchedMovies, totalMovies, this.#LANG_STATS_MOVIES[lang], of);
+                this.#renderStatsHeader(watchedHours, totalHours, this.#LANG_STATS_HOURS[lang], of);
+                this.#renderStatsHeader(watchedDays, totalDays, this.#LANG_STATS_DAYS[lang], of);
 
-                this.#renderStatsCharts(watchedEpisodes, totalEpisodes, this.#STATS_EPISODES_TITLES[lang], of);
-                this.#renderStatsCharts(watchedMovies, totalMovies, this.#STATS_MOVIES_TITLES[lang], of);
-                this.#renderStatsCharts(watchedHours, totalHours, this.#STATS_HOURS_TITLES[lang], of);
-                this.#renderStatsCharts(watchedDays, totalDays, this.#STATS_DAYS_TITLES[lang], of);
+                this.#renderStatsCharts(watchedEpisodes, totalEpisodes, this.#LANG_STATS_EPISODES[lang], of);
+                this.#renderStatsCharts(watchedMovies, totalMovies, this.#LANG_STATS_MOVIES[lang], of);
+                this.#renderStatsCharts(watchedHours, totalHours, this.#LANG_STATS_HOURS[lang], of);
+                this.#renderStatsCharts(watchedDays, totalDays, this.#LANG_STATS_DAYS[lang], of);
             }, 1000);
 
             const observer = new MutationObserver(() => {
-                this.#renderStatsCharts(watchedEpisodes, totalEpisodes, this.#STATS_EPISODES_TITLES[lang], of);
-                this.#renderStatsCharts(watchedMovies, totalMovies, this.#STATS_MOVIES_TITLES[lang], of);
-                this.#renderStatsCharts(watchedHours, totalHours, this.#STATS_HOURS_TITLES[lang], of);
-                this.#renderStatsCharts(watchedDays, totalDays, this.#STATS_DAYS_TITLES[lang], of);
+                this.#renderStatsCharts(watchedEpisodes, totalEpisodes, this.#LANG_STATS_EPISODES[lang], of);
+                this.#renderStatsCharts(watchedMovies, totalMovies, this.#LANG_STATS_MOVIES[lang], of);
+                this.#renderStatsCharts(watchedHours, totalHours, this.#LANG_STATS_HOURS[lang], of);
+                this.#renderStatsCharts(watchedDays, totalDays, this.#LANG_STATS_DAYS[lang], of);
             });
             observer.observe(document.querySelector('.UserStatisticsBlock__charts'), {childList: true});
         }

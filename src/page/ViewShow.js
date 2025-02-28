@@ -1,4 +1,10 @@
 class ViewShow {
+    static #LANG_SIMILAR = {
+        [LANG_EN]: 'Similar',
+        [LANG_RU]: 'Похожие',
+        [LANG_UA]: 'Схожі', // ?
+    };
+
     static compact() {
         if (this.#isViewShowPage()) {
             $('.episodes-by-season__episode').each(function() {
@@ -16,6 +22,8 @@ class ViewShow {
 
     static styleOld() {
         if (this.#isViewShowPage()) {
+            ViewCommon.fixNavigation();
+
             const pageMain = $('.Page__main');
 
             const details = $('.ShowDetails');
@@ -117,19 +125,20 @@ class ViewShow {
         }
     }
 
-    static removeBestComments() {
+    static removeBestComments(lang) {
         if (this.#isViewShowPage()) {
+            ViewCommon.fixNavigation();
+
             $('.ShowPage__best-comments').hide();
-            $('button.TopNavigation__link:contains("Лучшие комментарии")').hide();
-            $('.ShowDetails').children(':first').css({'width': '100%'});
+            $('button.TopNavigation__link:contains(' + ViewCommon.LANG_BEST_COMMENTS[lang] + ')').hide();
         }
     }
 
-    static removeSimilar() {
+    static removeSimilar(lang) {
         if (this.#isViewShowPage()) {
+            ViewCommon.fixNavigation();
             $('.ShowPage__similar-block').hide();
-            $('button.TopNavigation__link:contains("Похожие")').hide();
-            $('.ShowDetails').children(':first').css({'width': '100%'});
+            $('button.TopNavigation__link:contains(' + this.#LANG_SIMILAR[lang] + ')').hide();
         }
     }
 

@@ -1,21 +1,46 @@
 class ViewRating {
     static #SPECIAL_NUM = 0;
 
-    static removeEmoji() {
+    static #LANG_EMOTIONAL_RATING = {
+        [LANG_EN]: 'Emotional rating',
+        [LANG_RU]: 'Эмоциональная оценка',
+        [LANG_UA]: 'Емоційна оцінка',
+    };
+    static #LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING = {
+        [LANG_EN]: 'Reload page to get an accurate rating.',
+        [LANG_RU]: 'Перезагрузите страницу, чтобы получить точный рейтинг.',
+        [LANG_UA]: 'Перезавантажте сторінку, щоб отримати точний рейтинг.',
+    };
+    static #LANG_RATING = {
+        [LANG_EN]: 'Rating',
+        [LANG_RU]: 'Рейтинг',
+        [LANG_UA]: 'Рейтинг',
+    };
+    static #LANG_VOTES = {
+        [LANG_EN]: 'votes',
+        [LANG_RU]: 'голосов',
+        [LANG_UA]: 'голосів',
+    };
+
+    static removeEmoji(lang) {
         if (this.#isViewRatingPage()) {
             ViewCommon.removeEmoji();
-            $('h3.title__main-text:contains("Эмоциональная оценка")').closest('div.title.title__secondary').hide();
+
+            const title = this.#LANG_EMOTIONAL_RATING[lang];
+            $('h3.title__main-text:contains(' + title + ')').closest('div.title.title__secondary').hide();
         }
     }
 
-    static removeBestComments() {
+    static removeBestComments(lang) {
         if (this.#isViewRatingPage()) {
-            $('h3.title__main-text:contains("Лучшие комментарии")').closest('div.title.title__secondary').hide();
+            const title = ViewCommon.LANG_BEST_COMMENTS[lang];
+            $('h3.title__main-text:contains(' + title + ')').closest('div.title.title__secondary').hide();
+
             $('div.ShowRatingPage__top-comments').hide()
         }
     }
 
-    static makeRatingAccurate(renderBars) {
+    static makeRatingAccurate(renderBars, lang) {
         if (this.#isViewRatingPage()) {
             setTimeout(() => {
                 const jsonData = $('#__NUXT_DATA__').html();
@@ -23,12 +48,12 @@ class ViewRating {
 
                 if (this.#isDataAvailable(data)) {
                     const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data);
-                    this.#makeRatingTableAccurate(seasonsData, episodesData);
+                    this.#makeRatingTableAccurate(seasonsData, episodesData, lang);
                     if (renderBars) {
-                        this.#renderRatingBars(seasonsData, episodesData);
+                        this.#renderRatingBars(seasonsData, episodesData, lang);
                     }
                 } else {
-                    this.#showNoDataWarning();
+                    this.#showNoDataWarning(lang);
                 }
             }, 250);
         }
@@ -43,9 +68,9 @@ class ViewRating {
         return data[4].hasOwnProperty('seasonRatings');
     }
 
-    static #showNoDataWarning() {
+    static #showNoDataWarning(lang) {
         let html = '<div class="ShowRatingAccurateWarning" style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">';
-        html += 'Перезагрузите страницу, чтобы получить точный рейтинг.';
+        html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING;
         html += '</div>';
         $(html).insertBefore('div.ShowRatingTable');
     }
@@ -95,14 +120,14 @@ class ViewRating {
         return [seasonsData, episodesData];
     }
 
-    static #makeRatingTableAccurate(seasonsData, episodesData) {
+    static #makeRatingTableAccurate(seasonsData, episodesData, lang) {
         const self = this;
 
         $('a.ShowRatingTable__cell-link').each(function() {
             const matched = $(this).attr('href').match(`^/view/episode/(\\d+)/$`);
             const episodeId = matched[1];
             $(this).html(episodesData[episodeId].rating);
-            $(this).attr('title', self.#getRatingTitle(episodesData[episodeId].rating, episodesData[episodeId].votes));
+            $(this).attr('title', self.#getRatingTitle(episodesData[episodeId].rating, episodesData[episodeId].votes, lang));
         });
 
         let seasonNum = 0;
@@ -111,14 +136,14 @@ class ViewRating {
                 $(this).html(seasonsData[seasonNum].rating);
                 $(this).attr(
                     'title',
-                    self.#getRatingTitle(seasonsData[seasonNum].rating, seasonsData[seasonNum].votes)
+                    self.#getRatingTitle(seasonsData[seasonNum].rating, seasonsData[seasonNum].votes, lang)
                 );
             }
             seasonNum++;
         });
     }
 
-    static #renderRatingBars(seasonsData, episodesData) {
+    static #renderRatingBars(seasonsData, episodesData, lang) {
         const [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
         const barsCellsData = this.#getBarsCellsData(minRating, maxRating);
         const backgroundColor = $('.Page__main').css('--content-background');
@@ -144,7 +169,7 @@ class ViewRating {
             html += '<div class="ShowRatingBars__season" style="margin-bottom: 30px;">';
             html += '<p style="font-size: 22px;">Сезон ' + seasonNum + '</p>';
             html += '<p style="' + smallFont + '">'
-                + this.#getRatingTitle(seasonsData[seasonNum].rating, seasonsData[seasonNum].votes)
+                + this.#getRatingTitle(seasonsData[seasonNum].rating, seasonsData[seasonNum].votes, lang)
                 + '</p>';
             html += '<div class="ShowRatingBars__chart" style="'
                 + 'display: grid; '
@@ -250,7 +275,7 @@ class ViewRating {
                     + 'left: 10%; '
                     + 'width: 80%; '
                     + 'height: ' + barHeight + 'px;'
-                    + '" title="' + this.#getRatingTitle(episodeData.rating, episodeData.votes) + '">';
+                    + '" title="' + this.#getRatingTitle(episodeData.rating, episodeData.votes, lang) + '">';
                 html += '<div class="ShowRatingBars__bar" style="'
                     + 'width: 100%; '
                     + 'height: 100%; '
@@ -338,7 +363,7 @@ class ViewRating {
         return barHeightMax / range * (rating - minRatingLimit);
     }
 
-    static #getRatingTitle(rating, votes) {
-        return 'Рейтинг: ' + rating + ' (голосов ' + votes + ')';
+    static #getRatingTitle(rating, votes, lang) {
+        return this.#LANG_RATING[lang] + ': ' + rating + ' (' + this.#LANG_VOTES[lang] + ' ' + votes + ')';
     }
 }
