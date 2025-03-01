@@ -18,31 +18,31 @@ class OptionHandler {
             ProfileName.expandShowLists();
             ProfileCalendar.expandShowLists();
         });
-        await this.#enableIfOn('profile_news_remove', () => {
+        await this.#enableIfOn('profile_news_hide', () => {
             ProfileName.removeNewsBlock();
             ProfileCalendar.removeNewsBlock();
         });
-        await this.#enableIfOn('profile_recommendations_remove', () => ProfileName.removeRecommendationsBlock());
+        await this.#enableIfOn('profile_recommendations_hide', () => ProfileName.removeRecommendationsBlock());
         await this.#enableIfOn('profile_expand_newsfeed', () => ProfileName.expandNewsfeed());
 
         // view
-        await this.#enableIfOn('view_navigation_remove', () => ViewShow.removeNavigation());
+        await this.#enableIfOn('view_navigation_hide', () => ViewShow.removeNavigation());
         await this.#enableIfOn('view_style_old', () => {
             ViewEpisode.styleOld();
             ViewShow.styleOld();
         });
-        await this.#enableIfOn('view_report_remove', () => ViewShow.removeReport());
-        await this.#enableIfOn('view_emoji_remove', () => {
+        await this.#enableIfOn('view_report_hide', () => ViewShow.removeReport());
+        await this.#enableIfOn('view_emoji_hide', () => {
             ViewShow.removeEmoji();
             ViewRating.removeEmoji(lang);
         });
-        await this.#enableIfOn('view_note_share_remove', () => {
+        await this.#enableIfOn('view_note_share_hide', () => {
             ViewEpisode.removeNoteShare();
             ViewShow.removeNoteShare();
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
-        await this.#enableIfOn('view_similar_remove', () => ViewShow.removeSimilar(lang));
-        await this.#enableIfOn('view_best_comments_remove', () => {
+        await this.#enableIfOn('view_similar_hide', () => ViewShow.removeSimilar(lang));
+        await this.#enableIfOn('view_best_comments_hide', () => {
             ViewShow.removeBestComments(lang);
             ViewRating.removeBestComments(lang);
         });

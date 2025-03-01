@@ -2,37 +2,83 @@ const VALUE_TRUE = true;
 const VALUE_FALSE = false;
 const VALUE_INDETERMINATE = 'indeterminate';
 
+const POPUP_LANG_DEFAULT = LANG_RU;
+const POPUP_LANG_KEY = 'lang';
+const SELECTED_LANG_CLASS = 'lang_selected';
+
 $(async function() {
-    renderPopupHtml(optionList);
+    await renderLangsHtml();
+    await renderOptionsHtml(optionList);
     await renderCheckboxesValues(optionList);
     await fixRecursiveValues(optionList);
+    await handleLangChange();
     await handleCheckboxesChecks(optionList);
 });
 
-function renderPopupHtml(options) {
-    const html = getPopupHtml(options, 0);
-    $('div.container').html(html);
-}
+async function renderLangsHtml() {
+    const popupLang = await getPopupLang();
 
-function getPopupHtml(options, marginLeft) {
+    const langs = [LANG_EN, LANG_RU, LANG_UA];
     let html = '';
-
-    let style = 'margin-left: ' + marginLeft + 'px; ';
-    if (marginLeft === 0) {
-        style += 'margin-top: 10px; margin-bottom: 5px; font-weight: bold; ';
+    for (const lang of langs) {
+        let classes = '';
+        classes += (popupLang === lang) ? ' ' + SELECTED_LANG_CLASS : '';
+        html += '<div class="lang_item' + classes + '" data-value="' + lang + '">' + lang.toUpperCase() + '</div>';
     }
 
+    $('.langs').html(html);
+}
+
+async function renderOptionsHtml(options) {
+    const optionsHtml = await getOptionsHtml(options, 0);
+    $('.options').html(optionsHtml);
+}
+
+async function getOptionsHtml(options, marginLeft) {
+    const popupLang = await getPopupLang();
+    let html = '';
+
     for (const option of options) {
+        let style = 'margin-left: ' + marginLeft + 'px; ';
+        if ((marginLeft === 0) && option.hasOwnProperty('children')) {
+            style += 'margin-top: 10px; margin-bottom: 5px; font-weight: bold; ';
+        }
+
         html += '<div class="option" style="' + style + '">';
-        html += '<input class="checkbox" type="checkbox" id="' + option.id + '"> ' + option.name;
+        html += '<input class="checkbox" type="checkbox" id="' + option.id + '">';
+        html += '<span id="title_' + option.id + '">' + option.name[popupLang] + '</span>';
         html += '</div>';
 
-        if (option.children) {
-            html += getPopupHtml(option.children, marginLeft + 15);
+        if (option.hasOwnProperty('children')) {
+            html += await getOptionsHtml(option.children, marginLeft + 15);
         }
     }
 
     return html;
+}
+
+async function handleLangChange() {
+    $('.lang_item').on('click', async function() {
+        $('.lang_item').each(function() {
+            $(this).removeClass(SELECTED_LANG_CLASS);
+        });
+
+        $(this).addClass(SELECTED_LANG_CLASS);
+        await setStorageData(POPUP_LANG_KEY, $(this).attr('data-value'));
+
+        await renderCheckboxesTitles(optionList);
+    });
+}
+
+async function renderCheckboxesTitles(options) {
+    const popupLang = await getPopupLang();
+    for (const option of options) {
+        $('#title_' + option.id).html(option.name[popupLang]);
+
+        if (option.hasOwnProperty('children')) {
+            await renderCheckboxesTitles(option.children);
+        }
+    }
 }
 
 async function renderCheckboxesValues(options) {
@@ -138,6 +184,11 @@ function renderCheckboxValue(id, value) {
         checkbox.prop('indeterminate', false);
         checkbox.prop('checked', value);
     }
+}
+
+async function getPopupLang() {
+    let popupLang = await getStorageData(POPUP_LANG_KEY);
+    return (popupLang === undefined) ? POPUP_LANG_DEFAULT : popupLang;
 }
 
 async function getStorageData(id) {

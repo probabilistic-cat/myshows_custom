@@ -14,3 +14,37 @@ body {
     background-color: #ffffff;
     color: #1d1d1f;
 }
+
+.header {
+    width: 100%;
+    height: 20px;
+}
+
+.langs {
+    float:right;
+    margin: 10px 10px 0 0;
+    border: 1px solid #cc0000;
+    border-radius: 4px;
+}
+
+.lang_item {
+    float: left;
+    padding: 2px 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.lang_selected {
+    background-color: #cc0000;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.options {
+    margin: 0 0 15px 5px;
+    width: calc(100% - 10px);
+}
+
+.checkbox {
+    accent-color: #cc0000;
+}
