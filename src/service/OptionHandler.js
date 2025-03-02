@@ -4,10 +4,11 @@ class OptionHandler {
 
         // common
         await this.#enableIfOn('common_compact', () => {
-            ProfileName.compact();
             Profile.compact();
             ProfileCalendar.compact();
+            ProfileEdit.compact();
             ProfileFriends.compact();
+            ProfileName.compact();
             ViewShow.compact();
         });
         await this.#enableIfOn('common_classic_status_label', () => Common.classicStatusLabel());

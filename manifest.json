@@ -30,6 +30,7 @@
             "src/page/Common.js",
             "src/page/Profile.js",
             "src/page/ProfileCalendar.js",
+            "src/page/ProfileEdit.js",
             "src/page/ProfileFriends.js",
             "src/page/ProfileName.js",
             "src/page/ViewCommon.js",
