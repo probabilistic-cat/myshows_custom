@@ -30,8 +30,8 @@ class ViewShow {
 
             const details = $('.ShowDetails');
             const detailsTop = details.children(':first');
-            const detailsPoster = details.find('div.ShowDetails-poster');
-            const detailsStatus = details.find('div.ShowDetails-status');
+            const detailsPoster = details.find('.ShowDetails-poster');
+            const detailsStatus = details.find('.ShowDetails-status');
             const detailsInfo = detailsStatus.next();
             const detailsDesc = detailsInfo.next();
 
@@ -61,11 +61,11 @@ class ViewShow {
 
 
             const infoRating = detailsInfo.children(':first');
-            const showRating = infoRating.find('div.ShowRating');
-            const showRatingInfo = showRating.find('div.ShowRating-info');
-            const showRatingValue = showRating.find('div.ShowRating-value');
-            const showRatingInfoTitle = showRatingInfo.find('div.ShowRating-title');
-            const showRatingInfoStars = showRatingInfo.find('div.ShowRating__stars-wrapper');
+            const showRating = infoRating.find('.ShowRating');
+            const showRatingInfo = showRating.find('.ShowRating-info');
+            const showRatingValue = showRating.find('.ShowRating-value');
+            const showRatingInfoTitle = showRatingInfo.find('.ShowRating-title');
+            const showRatingInfoStars = showRatingInfo.find('.ShowRating__stars-wrapper');
 
             infoRating.css({'margin': '0'});
             showRating.css({
@@ -83,12 +83,12 @@ class ViewShow {
             ViewCommon.InfoTable();
 
 
-            detailsInfo.find('div.ShowDetails-report').css({
+            detailsInfo.find('.ShowDetails-report').css({
                 'border-top': '1px solid var(--border-section-color)',
                 'padding-top': '10px',
             });
 
-            detailsDesc.find('div.ShowTabs').css({
+            detailsDesc.find('.ShowTabs').css({
                 'border-top': '1px solid var(--border-section-color)',
                 'padding-top': '20px',
             });
@@ -117,7 +117,7 @@ class ViewShow {
     static expandSeasons() {
         if (this.#isViewShowPage()) {
             setTimeout(() => {
-                $('div.episodes-by-season__season-row').each(function() {
+                $('.episodes-by-season__season-row').each(function() {
                     const iconOpenEl = $(this).find('svg.episodes-by-season__season-row_toggle-icon');
                     if (!iconOpenEl.hasClass('opened')) {
                         $(this).trigger('click');
@@ -132,7 +132,7 @@ class ViewShow {
             ViewCommon.fixNavigation();
 
             $('.ShowPage__best-comments').hide();
-            $('button.TopNavigation__link:contains(' + ViewCommon.LANG_BEST_COMMENTS[lang] + ')').hide();
+            $('.TopNavigation__link:contains(' + ViewCommon.LANG_BEST_COMMENTS[lang] + ')').hide();
         }
     }
 
@@ -140,7 +140,7 @@ class ViewShow {
         if (this.#isViewShowPage()) {
             ViewCommon.fixNavigation();
             $('.ShowPage__similar-block').hide();
-            $('button.TopNavigation__link:contains(' + this.#LANG_SIMILAR[lang] + ')').hide();
+            $('.TopNavigation__link:contains(' + this.#LANG_SIMILAR[lang] + ')').hide();
         }
     }
 

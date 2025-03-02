@@ -28,16 +28,16 @@ class ViewRating {
             ViewCommon.removeEmoji();
 
             const title = this.#LANG_EMOTIONAL_RATING[lang];
-            $('h3.title__main-text:contains(' + title + ')').closest('div.title.title__secondary').hide();
+            $('h3.title__main-text:contains(' + title + ')').closest('.title.title__secondary').hide();
         }
     }
 
     static removeBestComments(lang) {
         if (this.#isViewRatingPage()) {
             const title = ViewCommon.LANG_BEST_COMMENTS[lang];
-            $('h3.title__main-text:contains(' + title + ')').closest('div.title.title__secondary').hide();
+            $('h3.title__main-text:contains(' + title + ')').closest('.title.title__secondary').hide();
 
-            $('div.ShowRatingPage__top-comments').hide()
+            $('.ShowRatingPage__top-comments').hide()
         }
     }
 
@@ -73,7 +73,7 @@ class ViewRating {
         let html = '<div class="ShowRatingAccurateWarning" style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">';
         html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING[lang];
         html += '</div>';
-        $(html).insertBefore('div.ShowRatingTable');
+        $(html).insertBefore('.ShowRatingTable');
     }
 
     static #getSeasonsAndEpisodesData(data) {
@@ -124,7 +124,7 @@ class ViewRating {
     static #makeRatingTableAccurate(seasonsData, episodesData, lang) {
         const self = this;
 
-        $('a.ShowRatingTable__cell-link').each(function() {
+        $('.ShowRatingTable__cell-link').each(function() {
             const matched = $(this).attr('href').match(`^/view/episode/(\\d+)/$`);
             const episodeId = matched[1];
             $(this).html(episodesData[episodeId].rating);
@@ -132,7 +132,7 @@ class ViewRating {
         });
 
         let seasonNum = 0;
-        $('div.ShowRatingTable__content div.df:last div.ShowRatingTable__cell').each(function() {
+        $('.ShowRatingTable__content .df:last .ShowRatingTable__cell').each(function() {
             if (seasonsData.hasOwnProperty(seasonNum)) {
                 $(this).html(seasonsData[seasonNum].rating);
                 $(this).attr(
@@ -151,7 +151,7 @@ class ViewRating {
         const graphLine = '1px solid #b2b2b2';
         const smallFont = 'font-size: 11px;';
         const ratingMarksWidth = 30;
-        const chartWidth = $('div.ShowRatingTable').parent().width() - ratingMarksWidth;
+        const chartWidth = $('.ShowRatingTable').parent().width() - ratingMarksWidth;
         const barHeightMax = 180;
 
         let html = '';
@@ -302,7 +302,7 @@ class ViewRating {
         }
         html += '</div>';
 
-        $(html).insertBefore('div.ShowRatingTable');
+        $(html).insertBefore('.ShowRatingTable');
     }
 
     static #getMinAndMaxRatings(episodesData) {

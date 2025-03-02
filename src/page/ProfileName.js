@@ -35,16 +35,16 @@ class ProfileName
         }
 
         if (this.#isNewProfileNamePage()) {
-            Utils.addGlobalCss(['div.UserShowItem_mode_compact {padding: 11px 0;}']);
+            Utils.addGlobalCss(['.UserShowItem_mode_compact {padding: 11px 0;}']);
             Utils.addGlobalCss([
-                'div.UserHeader {margin-top: 50px; padding-top: 15px; padding-bottom: 15px;}',
-                'div.LayoutWrapper.user div.LayoutWrapper__main {padding-top: 150px;}',
+                '.UserHeader {margin-top: 50px; padding-top: 15px; padding-bottom: 15px;}',
+                '.LayoutWrapper.user .LayoutWrapper__main {padding-top: 150px;}',
             ]);
 
-            $('div.FeedItem.personal:not(:last-child)').css({'margin-bottom': '5px', 'padding-bottom': '5px'});
-            $('div.Feed-group').css({'padding': '9px 0'});
+            $('.FeedItem:not(:last-child)').css({'margin-bottom': '5px', 'padding-bottom': '5px'});
+            $('.Feed-group').css({'padding': '9px 0'});
 
-            $('div.com-comments div.Col.all').css({'padding': '5px 0'});
+            $('.com-comments .Col').css({'padding': '5px 0'});
         }
     }
 
@@ -52,7 +52,7 @@ class ProfileName
         const of = this.#LANG_STATS_OF[lang];
 
         if (this.#isOldProfileNamePage()) {
-            $('div.statusBlocks div.statusBlock').each(function(index) {
+            $('.statusBlock').each(function(index) {
                 if (index > 2) {
                     return false;
                 }
@@ -111,13 +111,13 @@ class ProfileName
 
     static expandShowLists() {
         if (this.#isOldProfileNamePage()) {
-            $('a.linkPseudo.show-shows span').each(function() {
+            $('.linkPseudo.show-shows span').each(function() {
                 $(this).trigger('click');
             });
         }
 
         if (this.#isNewProfileNamePage()) {
-            const showMore = $('div.UserShowsBlock__button-more');
+            const showMore = $('.UserShowsBlock__button-more');
             setTimeout(function() {
                 showMore.trigger('click');
             }, this.#TIMEOUT);
@@ -127,35 +127,35 @@ class ProfileName
                     showMore.trigger('click');
                 }
             });
-            observer.observe(document.querySelector('div.UserShowsBlock__shows div.Container'), {childList: true});
+            observer.observe(document.querySelector('.UserShowsBlock__shows .Container'), {childList: true});
         }
     }
 
     static expandNewsfeed() {
         if (this.#isOldProfileNamePage()) {
-            $('a.linkPseudo.show-news span').trigger('click');
+            $('.linkPseudo.show-news span').trigger('click');
         }
     }
 
     static removeNewsBlock() {
         if (this.#isNewProfileNamePage()) {
-            $('div.UserNewsBlock').closest('div.UserBlock').hide();
+            $('.UserNewsBlock').closest('.UserBlock').hide();
         }
     }
 
     static removeRecommendationsBlock() {
         if (this.#isNewProfileNamePage()) {
-            $('div.UserRecommendationsBlock').closest('div.UserBlock').hide();
+            $('.UserRecommendationsBlock').closest('.UserBlock').hide();
         }
     }
 
     static #isOldProfileNamePage() {
-        const nameEl = $('div.wrapper div.container.content main.col8._borderLeft h1');
+        const nameEl = $('.wrapper .container.content .col8._borderLeft h1');
         return nameEl.length && nameEl.html() === window.location.pathname.substring(1);
     }
 
     static #isNewProfileNamePage() {
-        const nameEl = $('div.UserHeader__name');
+        const nameEl = $('.UserHeader__name');
         return nameEl.length && nameEl.html().startsWith(window.location.pathname.substring(1));
     }
 

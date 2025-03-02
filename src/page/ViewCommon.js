@@ -15,9 +15,9 @@ class ViewCommon
     }
 
     static pageMainWider(widthAsidePercent = 0.25) {
-        const content = $('div.DefaultLayout__content');
-        const pageMain = $('main.Page__main');
-        const pageAside = $('aside.Page__aside');
+        const content = $('.DefaultLayout__content');
+        const pageMain = $('.Page__main');
+        const pageAside = $('.Page__aside');
         const pageAsideWidth = content.width() * widthAsidePercent;
 
         pageAside.css('width', pageAsideWidth + 'px');
@@ -25,7 +25,7 @@ class ViewCommon
     }
 
     static InfoTable() {
-        const infoTable = $('table.info-table');
+        const infoTable = $('.info-table');
         infoTable.find('td').css({'font-size': '14px', 'padding': '1px 0'});
         infoTable.find('td.info-row__title').css({'width': '140px'});
         infoTable.find('td.info-row__value').css({'width': 'auto'});

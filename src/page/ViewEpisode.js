@@ -4,9 +4,9 @@ class ViewEpisode
         if (this.#isViewEpisodePage()) {
             const pageMain = $('.Page__main');
 
-            const details = $('div.episode-details');
+            const details = $('.episode-details');
             const detailsTop = details.children(':first');
-            const detailsPoster = details.find('div.episode-details-poster');
+            const detailsPoster = details.find('.episode-details-poster');
             const detailsInfo = detailsPoster.next();
 
             const posterWidth = pageMain.width() * 0.6;
@@ -31,10 +31,10 @@ class ViewEpisode
             });
 
 
-            const showRating = detailsInfo.find('div.ShowRating');
-            const showRatingLabel = showRating.find('div.EpisodeWatchLabel');
-            const showRatingInfo = showRating.find('div.ShowRating-info');
-            const showRatingValue = showRating.find('div.ShowRating-value');
+            const showRating = detailsInfo.find('.ShowRating');
+            const showRatingLabel = showRating.find('.EpisodeWatchLabel');
+            const showRatingInfo = showRating.find('.ShowRating-info');
+            const showRatingValue = showRating.find('.ShowRating-value');
 
             showRating.parent().css({
                 'margin': '0',
@@ -57,8 +57,8 @@ class ViewEpisode
 
     static removeNoteShare() {
         if (this.#isViewEpisodePage()) {
-            $('div.episode-details__note').hide();
-            $('div.episode-details__share').hide();
+            $('.episode-details__note').hide();
+            $('.episode-details__share').hide();
         }
     }
 
