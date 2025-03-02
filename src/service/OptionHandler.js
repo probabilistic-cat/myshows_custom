@@ -4,6 +4,7 @@ class OptionHandler {
 
         // common
         await this.#enableIfOn('common_compact', () => {
+            My.compact();
             Profile.compact();
             ProfileCalendar.compact();
             ProfileEdit.compact();
