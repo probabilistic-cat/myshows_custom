@@ -1,4 +1,6 @@
 class ViewShow {
+    static #TIMEOUT = 500;
+
     static #LANG_SIMILAR = {
         [LANG_EN]: 'Similar',
         [LANG_RU]: 'Похожие',
@@ -121,7 +123,7 @@ class ViewShow {
                         $(this).trigger('click');
                     }
                 });
-            }, 250);
+            }, this.#TIMEOUT);
         }
     }
 

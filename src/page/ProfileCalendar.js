@@ -1,4 +1,6 @@
 class ProfileCalendar {
+    static #TIMEOUT = 500;
+
     static compact() {
         if (this.#isProfileCalendarPage()) {
             $('.Col').css({'padding': '3px 0'});
@@ -15,7 +17,7 @@ class ProfileCalendar {
                         $(this).trigger('click');
                     }
                 });
-            }, 250);
+            }, this.#TIMEOUT);
         }
     }
 

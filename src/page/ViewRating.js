@@ -1,4 +1,5 @@
 class ViewRating {
+    static #TIMEOUT = 500;
     static #SPECIAL_NUM = 0;
 
     static #LANG_EMOTIONAL_RATING = {
@@ -7,9 +8,9 @@ class ViewRating {
         [LANG_UA]: 'Емоційна оцінка',
     };
     static #LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING = {
-        [LANG_EN]: 'Reload page to get an accurate rating.',
-        [LANG_RU]: 'Перезагрузите страницу, чтобы получить точный рейтинг.',
-        [LANG_UA]: 'Перезавантажте сторінку, щоб отримати точний рейтинг.',
+        [LANG_EN]: 'Refresh page to get an accurate rating.',
+        [LANG_RU]: 'Обновите страницу, чтобы получить точный рейтинг.',
+        [LANG_UA]: 'Оновіть сторінку, щоб отримати точний рейтинг.',
     };
     static #LANG_RATING = {
         [LANG_EN]: 'Rating',
@@ -55,7 +56,7 @@ class ViewRating {
                 } else {
                     this.#showNoDataWarning(lang);
                 }
-            }, 250);
+            }, this.#TIMEOUT);
         }
     }
 
@@ -70,7 +71,7 @@ class ViewRating {
 
     static #showNoDataWarning(lang) {
         let html = '<div class="ShowRatingAccurateWarning" style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">';
-        html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING;
+        html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING[lang];
         html += '</div>';
         $(html).insertBefore('div.ShowRatingTable');
     }

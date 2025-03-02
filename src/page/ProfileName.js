@@ -1,5 +1,7 @@
 class ProfileName
 {
+    static #TIMEOUT = 1000;
+
     static #LANG_STATS_EPISODES = {
         [LANG_EN]: ['episodes', 'episode'],
         [LANG_RU]: ['эпизодов', 'эпизода', 'эпизод'],
@@ -95,7 +97,7 @@ class ProfileName
                 this.#renderStatsCharts(watchedMovies, totalMovies, this.#LANG_STATS_MOVIES[lang], of);
                 this.#renderStatsCharts(watchedHours, totalHours, this.#LANG_STATS_HOURS[lang], of);
                 this.#renderStatsCharts(watchedDays, totalDays, this.#LANG_STATS_DAYS[lang], of);
-            }, 1000);
+            }, this.#TIMEOUT);
 
             const observer = new MutationObserver(() => {
                 this.#renderStatsCharts(watchedEpisodes, totalEpisodes, this.#LANG_STATS_EPISODES[lang], of);
@@ -118,7 +120,7 @@ class ProfileName
             const showMore = $('div.UserShowsBlock__button-more');
             setTimeout(function() {
                 showMore.trigger('click');
-            }, 500);
+            }, this.#TIMEOUT);
 
             const observer = new MutationObserver(() => {
                 if (showMore.length) {
