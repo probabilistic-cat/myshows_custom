@@ -70,7 +70,9 @@ class ViewRating {
     }
 
     static #showNoDataWarning(lang) {
-        let html = '<div class="ShowRatingAccurateWarning" style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">';
+        let html = '<div class="ShowRatingAccurateWarning" '
+            + 'style="margin-bottom: 20px; font-weight: bold; color: #cc0000;">'
+        ;
         html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING[lang];
         html += '</div>';
         $(html).insertBefore('.ShowRatingTable');
@@ -128,7 +130,10 @@ class ViewRating {
             const matched = $(this).attr('href').match(`^/view/episode/(\\d+)/$`);
             const episodeId = matched[1];
             $(this).html(episodesData[episodeId].rating);
-            $(this).attr('title', self.#getRatingTitle(episodesData[episodeId].rating, episodesData[episodeId].votes, lang));
+            $(this).attr(
+                'title',
+                self.#getRatingTitle(episodesData[episodeId].rating, episodesData[episodeId].votes, lang),
+            );
         });
 
         let seasonNum = 0;

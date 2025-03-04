@@ -50,7 +50,9 @@ class ProfileName
             $('.AchievementList__item').css({'width':  Utils.round(100 / this.#FRIENDS_COUNT, 2) + '%'});
             $('.AchievementList__item:nth-child(-n+' + this.#FRIENDS_COUNT + ')').show();
 
-            $('.UserFriendsBlock__list').css({'grid-template-columns': 'repeat(' + this.#ACHIEVEMENTS_COUNT + ', 1fr)'});
+            $('.UserFriendsBlock__list').css({
+                'grid-template-columns': 'repeat(' + this.#ACHIEVEMENTS_COUNT + ', 1fr)',
+            });
             $('.UserFriendsBlock__name, .UserFriendsBlock__add-title').css({'font-size': '13px'});
         }
     }
@@ -70,7 +72,9 @@ class ProfileName
                 const max = Math.round(value / percent * 100);
 
                 $(this).find('.statusBlockExtra').remove();
-                subDiv.append('<span class="statusBlockExtra" style="margin-top: 10px;">' + percent + '% ' + of + ' <b>' + max + '</b></span>');
+                subDiv.append('<span class="statusBlockExtra" style="margin-top: 10px;">' + percent + '% ' + of
+                    + ' <b>' + max + '</b></span>')
+                ;
             })
         }
 
