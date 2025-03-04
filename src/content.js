@@ -1,5 +1,5 @@
-$(async function() {
-    PageObserver.checkingTitleChange(async () => {
+$(async() => {
+    PageObserver.checkingTitleChange(async() => {
         await OptionHandler.enable();
     });
     await OptionHandler.enable();

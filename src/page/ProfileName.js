@@ -50,7 +50,7 @@ class ProfileName
 
             $('.com-comments .Col').css({'padding': '5px 0'});
 
-            $('.AchievementList__item').css({'width':  Utils.round(100 / this.#FRIENDS_COUNT, 2) + '%'});
+            $('.AchievementList__item').css({'width': Utils.round(100 / this.#FRIENDS_COUNT, 2) + '%'});
             $('.AchievementList__item:nth-child(-n+' + this.#FRIENDS_COUNT + ')').show();
 
             $('.UserFriendsBlock__list').css({
@@ -132,7 +132,7 @@ class ProfileName
 
         if (this.#isNewProfileNamePage()) {
             const showMore = $('.UserShowsBlock__button-more');
-            setTimeout(function() {
+            setTimeout(() => {
                 showMore.trigger('click');
             }, this.#TIMEOUT);
 
@@ -204,7 +204,7 @@ class ProfileName
     }
 
     static #getStatsBlock(blockClass, titleClass, titles) {
-        return $(blockClass).filter(function () {
+        return $(blockClass).filter(function() {
             const text = $(this).find(titleClass).text().trim();
             return titles.includes(text);
         });

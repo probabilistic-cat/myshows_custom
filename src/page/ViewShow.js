@@ -1,4 +1,5 @@
-class ViewShow {
+class ViewShow
+{
     static #TIMEOUT = 500;
 
     static #LANG_SIMILAR = {
@@ -9,9 +10,7 @@ class ViewShow {
 
     static compact() {
         if (this.#isViewShowPage()) {
-            $('.episodes-by-season__episode').each(function() {
-                $(this).css('height', 26);
-            });
+            $('.episodes-by-season__episode').css({'height': '26px'});
         }
     }
 

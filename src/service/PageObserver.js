@@ -1,4 +1,5 @@
-class PageObserver {
+class PageObserver
+{
     static checkingTitleChange(callbackFunc) {
         let oldHref = document.location.href;
         const observer = new MutationObserver(() => {

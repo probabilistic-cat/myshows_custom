@@ -1,4 +1,5 @@
-class ViewRating {
+class ViewRating
+{
     static #TIMEOUT = 500;
     static #SPECIAL_NUM = 0;
 

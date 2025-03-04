@@ -6,7 +6,7 @@ const POPUP_LANG_DEFAULT = LANG_RU;
 const POPUP_LANG_KEY = 'lang';
 const SELECTED_LANG_CLASS = 'lang_selected';
 
-$(async function() {
+$(async() => {
     await renderLangsHtml();
     await renderOptionsHtml(optionList);
     await renderCheckboxesValues(optionList);

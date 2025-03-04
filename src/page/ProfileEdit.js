@@ -1,4 +1,5 @@
-class ProfileEdit {
+class ProfileEdit
+{
     static compact() {
         if (this.#isProfileEditPage()) {
             $('.Field').css({'padding': '9px 0'});

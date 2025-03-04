@@ -1,4 +1,5 @@
-class ProfileCalendar {
+class ProfileCalendar
+{
     static #TIMEOUT = 500;
 
     static compact() {
@@ -23,9 +24,9 @@ class ProfileCalendar {
 
     static hideNewsBlock() {
         if (this.#isProfileCalendarPage()) {
-            $('.Next-section.last').each(function() {
-                $(this).hide();
-            });
+            const newsEls = $('.Next-section.last');
+            newsEls.first().prev().removeClass('border');
+            newsEls.hide();
         }
     }
 

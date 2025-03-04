@@ -1,4 +1,5 @@
-class My {
+class My
+{
     static compact() {
         if (this.#isMyPage()) {
             $('.UnwatchedEpisodeItem').css({'padding': '4px 10px'});

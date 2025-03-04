@@ -1,4 +1,5 @@
-class Common {
+class Common
+{
     static #HOSTNAME_OLD = 'old.myshows.me';
     static #HOSTNAME_NEW = 'myshows.me';
 

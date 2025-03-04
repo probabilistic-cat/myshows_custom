@@ -1,4 +1,5 @@
-class OptionHandler {
+class OptionHandler
+{
     static async enable() {
         const lang = Utils.getLang();
 
@@ -48,7 +49,7 @@ class OptionHandler {
             ViewShow.hideBestComments(lang);
             ViewRating.hideBestComments(lang);
         });
-        await this.#enableIfOn('view_accurate_rating', async () => {
+        await this.#enableIfOn('view_accurate_rating', async() => {
             const renderBars = await this.#isOptionOn('view_accurate_rating_bars');
             ViewRating.makeRatingAccurate(renderBars, lang);
         });

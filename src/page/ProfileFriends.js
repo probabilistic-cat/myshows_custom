@@ -1,4 +1,5 @@
-class ProfileFriends {
+class ProfileFriends
+{
     static compact() {
         if (this.#isProfileFriendsPage()) {
             $('.FeedItem:not(:last-child)').css({'margin-bottom': '5px', 'padding-bottom': '5px'});

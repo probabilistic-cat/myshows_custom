@@ -1,4 +1,5 @@
-class Utils {
+class Utils
+{
     static getLang() {
         const oldLangEl = $('.langSwitcher__selected .lang__label');
         if (oldLangEl.length) {
