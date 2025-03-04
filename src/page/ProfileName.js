@@ -36,11 +36,14 @@ class ProfileName
         }
 
         if (this.#isNewProfileNamePage()) {
-            Utils.addGlobalCss(['.UserShowItem_mode_compact {padding: 11px 0;}']);
             Utils.addGlobalCss([
-                '.UserHeader {margin-top: 50px; padding-top: 15px; padding-bottom: 15px;}',
-                '.LayoutWrapper.user .LayoutWrapper__main {padding-top: 150px;}',
+                '.UserHeader {margin-top: 70px; padding-top: 15px; padding-bottom: 15px;}',
+                '.LayoutWrapper.user .LayoutWrapper__main {padding-top: 130px;}',
             ]);
+            $('.UserAvatar.extra').css({'width': '80px', 'height': '80px'});
+            $('.UserHeader__friends-position').css({'font-size': '76px', 'line-height': '76px'});
+
+            Utils.addGlobalCss(['.UserShowItem_mode_compact {padding: 11px 0;}']);
 
             $('.FeedItem:not(:last-child)').css({'margin-bottom': '5px', 'padding-bottom': '5px'});
             $('.Feed-group').css({'padding': '9px 0'});
