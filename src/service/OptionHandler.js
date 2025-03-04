@@ -21,32 +21,32 @@ class OptionHandler {
             ProfileCalendar.expandShowLists();
         });
         await this.#enableIfOn('profile_news_hide', () => {
-            ProfileName.removeNewsBlock();
-            ProfileCalendar.removeNewsBlock();
+            ProfileName.hideNewsBlock();
+            ProfileCalendar.hideNewsBlock();
         });
-        await this.#enableIfOn('profile_recommendations_hide', () => ProfileName.removeRecommendationsBlock());
+        await this.#enableIfOn('profile_recommendations_hide', () => ProfileName.hideRecommendationsBlock());
         await this.#enableIfOn('profile_expand_newsfeed', () => ProfileName.expandNewsfeed());
 
         // view
-        await this.#enableIfOn('view_navigation_hide', () => ViewShow.removeNavigation());
-        await this.#enableIfOn('view_style_old', () => {
-            ViewEpisode.styleOld();
-            ViewShow.styleOld();
+        await this.#enableIfOn('view_navigation_hide', () => ViewShow.hideNavigation());
+        await this.#enableIfOn('view_poster_info_compact', () => {
+            ViewEpisode.compactPosterAndInfo();
+            ViewShow.compactPosterAndInfo();
         });
-        await this.#enableIfOn('view_report_hide', () => ViewShow.removeReport());
+        await this.#enableIfOn('view_report_hide', () => ViewShow.hideReport());
         await this.#enableIfOn('view_emoji_hide', () => {
-            ViewShow.removeEmoji();
-            ViewRating.removeEmoji(lang);
+            ViewShow.hideEmoji();
+            ViewRating.hideEmoji(lang);
         });
         await this.#enableIfOn('view_note_share_hide', () => {
-            ViewEpisode.removeNoteShare();
-            ViewShow.removeNoteShare();
+            ViewEpisode.hideNoteShare();
+            ViewShow.hideNoteShare();
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
-        await this.#enableIfOn('view_similar_hide', () => ViewShow.removeSimilar(lang));
+        await this.#enableIfOn('view_similar_hide', () => ViewShow.hideSimilar(lang));
         await this.#enableIfOn('view_best_comments_hide', () => {
-            ViewShow.removeBestComments(lang);
-            ViewRating.removeBestComments(lang);
+            ViewShow.hideBestComments(lang);
+            ViewRating.hideBestComments(lang);
         });
         await this.#enableIfOn('view_accurate_rating', async () => {
             const renderBars = await this.#isOptionOn('view_accurate_rating_bars');

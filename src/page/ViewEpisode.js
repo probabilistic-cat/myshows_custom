@@ -1,6 +1,6 @@
 class ViewEpisode
 {
-    static styleOld() {
+    static compactPosterAndInfo() {
         if (this.#isViewEpisodePage()) {
             const pageMain = $('.Page__main');
 
@@ -55,7 +55,7 @@ class ViewEpisode
         }
     }
 
-    static removeNoteShare() {
+    static hideNoteShare() {
         if (this.#isViewEpisodePage()) {
             $('.episode-details__note').hide();
             $('.episode-details__share').hide();

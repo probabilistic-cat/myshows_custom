@@ -50,10 +50,10 @@ const optionList = [
             [LANG_RU]: 'Скрыть навигацию',
             [LANG_UA]: 'Приховати навігацію',
         }, default: true},
-        {id: 'view_style_old', name: {
-            [LANG_EN]: 'Old style',
-            [LANG_RU]: 'Старый стиль',
-            [LANG_UA]: 'Старий стиль',
+        {id: 'view_poster_info_compact', name: {
+            [LANG_EN]: 'Compact poster and info',
+            [LANG_RU]: 'Компактный постер и инфо',
+            [LANG_UA]: 'Компактний постер та інфо',
         }, default: true},
         {id: 'view_report_hide', name: {
             [LANG_EN]: 'Hide report panel',

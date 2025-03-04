@@ -21,7 +21,7 @@ class ProfileCalendar {
         }
     }
 
-    static removeNewsBlock() {
+    static hideNewsBlock() {
         if (this.#isProfileCalendarPage()) {
             $('.Next-section.last').each(function() {
                 $(this).hide();

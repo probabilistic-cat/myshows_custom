@@ -148,13 +148,13 @@ class ProfileName
         }
     }
 
-    static removeNewsBlock() {
+    static hideNewsBlock() {
         if (this.#isNewProfileNamePage()) {
             $('.UserNewsBlock').closest('.UserBlock').hide();
         }
     }
 
-    static removeRecommendationsBlock() {
+    static hideRecommendationsBlock() {
         if (this.#isNewProfileNamePage()) {
             $('.UserRecommendationsBlock').closest('.UserBlock').hide();
         }

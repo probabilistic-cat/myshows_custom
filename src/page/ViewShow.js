@@ -15,14 +15,14 @@ class ViewShow {
         }
     }
 
-    static removeNavigation() {
+    static hideNavigation() {
         if (this.#isViewShowPage()) {
             $('.ShowDetails__navigation').hide();
             $('.ShowDetails').children(':first').css({'width': '100%', 'margin-bottom': '10px'});
         }
     }
 
-    static styleOld() {
+    static compactPosterAndInfo() {
         if (this.#isViewShowPage()) {
             ViewCommon.fixNavigation();
 
@@ -95,19 +95,19 @@ class ViewShow {
         }
     }
 
-    static removeReport() {
+    static hideReport() {
         if (this.#isViewShowPage()) {
             $('.ShowDetails-report').hide();
         }
     }
 
-    static removeEmoji() {
+    static hideEmoji() {
         if (this.#isViewShowPage()) {
             ViewCommon.removeEmoji();
         }
     }
 
-    static removeNoteShare() {
+    static hideNoteShare() {
         if (this.#isViewShowPage()) {
             $('.ShowDetails__note').hide();
             $('.ShowDetails__share').hide();
@@ -127,7 +127,7 @@ class ViewShow {
         }
     }
 
-    static removeBestComments(lang) {
+    static hideBestComments(lang) {
         if (this.#isViewShowPage()) {
             ViewCommon.fixNavigation();
 
@@ -136,7 +136,7 @@ class ViewShow {
         }
     }
 
-    static removeSimilar(lang) {
+    static hideSimilar(lang) {
         if (this.#isViewShowPage()) {
             ViewCommon.fixNavigation();
             $('.ShowPage__similar-block').hide();

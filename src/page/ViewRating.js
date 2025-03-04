@@ -23,7 +23,7 @@ class ViewRating {
         [LANG_UA]: 'голосів',
     };
 
-    static removeEmoji(lang) {
+    static hideEmoji(lang) {
         if (this.#isViewRatingPage()) {
             ViewCommon.removeEmoji();
 
@@ -32,7 +32,7 @@ class ViewRating {
         }
     }
 
-    static removeBestComments(lang) {
+    static hideBestComments(lang) {
         if (this.#isViewRatingPage()) {
             const title = ViewCommon.LANG_BEST_COMMENTS[lang];
             $('h3.title__main-text:contains(' + title + ')').closest('.title.title__secondary').hide();
