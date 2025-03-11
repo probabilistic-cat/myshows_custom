@@ -76,6 +76,8 @@ class ViewRating
         ;
         html += this.#LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING[lang];
         html += '</div>';
+
+        $('.ShowRatingAccurateWarning').remove();
         $(html).insertBefore('.ShowRatingTable');
     }
 
@@ -308,6 +310,7 @@ class ViewRating
         }
         html += '</div>';
 
+        $('.ShowRatingBars').remove();
         $(html).insertBefore('.ShowRatingTable');
     }
 
