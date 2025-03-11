@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Myshows Custom",
     "version": "1.0.0",
-    "description": "Myshows Custom.",
+    "description": "Customizations for site myshows.me.",
     "browser_action": {
         "default_area": "navbar",
         "default_popup": "popup/popup.html",
