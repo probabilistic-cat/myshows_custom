@@ -116,8 +116,8 @@ class ViewShow
     static expandSeasons() {
         if (this.#isViewShowPage()) {
             setTimeout(() => {
-                $('.episodes-by-season__season-row').each(function() {
-                    const iconOpenEl = $(this).find('svg.episodes-by-season__season-row_toggle-icon');
+                $('.EpisodesBySeason__season-row-column').each(function() {
+                    const iconOpenEl = $(this).find('svg.EpisodesBySeason__season-row-toggle-icon');
                     if (!iconOpenEl.hasClass('opened')) {
                         $(this).trigger('click');
                     }
