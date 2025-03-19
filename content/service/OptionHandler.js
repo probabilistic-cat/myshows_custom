@@ -68,8 +68,7 @@ class OptionHandler
     }
 
     static async #getStorageValue(storageKey) {
-        const data = await browser.storage.local.get(storageKey);
-        return data[storageKey];
+        return await CrossBrowser.getStorageData(storageKey);
     }
 
     static #getOptionDefaultValue(id, options) {

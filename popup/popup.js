@@ -207,10 +207,9 @@ async function getPopupLang() {
 }
 
 async function getStorageData(id) {
-    const data = await browser.storage.local.get(id);
-    return data[id];
+    return await CrossBrowser.getStorageData(id);
 }
 
 async function setStorageData(id, value) {
-    await browser.storage.local.set({[id]: value});
+    await CrossBrowser.setStorageData(id, value);
 }

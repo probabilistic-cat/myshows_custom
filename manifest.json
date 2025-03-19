@@ -25,6 +25,7 @@
         "js": [
             "jquery-3.7.1.slim.min.js",
             "common/consts.js",
+            "common/CrossBrowser.js",
             "common/optionList.js",
             "content/service/Utils.js",
             "content/page/Common.js",
