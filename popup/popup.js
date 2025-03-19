@@ -96,7 +96,7 @@ async function renderCheckboxesValues(options) {
     }
 }
 
-async function handleCheckboxesChecks(options, parent = null) {
+async function handleCheckboxesChecks(options, parents = []) {
     for (const option of options) {
         const checkbox = $('#' + option.id);
 
@@ -104,19 +104,26 @@ async function handleCheckboxesChecks(options, parent = null) {
             const value = $(this).is(':checked');
             await setOptionValueRecursive(option, value);
 
-            const parentValue = (parent !== null) ? await getStorageData(parent.id) : null;
-            if (
-                option.hasOwnProperty('requireParent') && option.requireParent === true
-                && parentValue === VALUE_FALSE && value === VALUE_TRUE
-            ) {
-                await setOptionValue(parent.id, value);
+            let child = option;
+            let parent = null;
+            for (let i = parents.length - 1; i >= 0; i--) {
+                parent = parents[i];
+                const parentValue = await getStorageData(parent.id);
+                if (
+                    child.hasOwnProperty('requireParent') && child.requireParent === true
+                    && parentValue === VALUE_FALSE && value === VALUE_TRUE
+                ) {
+                    await setOptionValue(parent.id, value);
+                }
+
+                child = parent;
             }
 
             await fixRecursiveValues(optionList);
         });
 
         if (option.children) {
-            await handleCheckboxesChecks(option.children, option);
+            await handleCheckboxesChecks(option.children, [...parents, option]);
         }
     }
 }
@@ -130,9 +137,17 @@ async function setOptionValueRecursive(option, value) {
                 await setOptionValueRecursive(child, value);
             }
         }
+
+        await disableChildrenWhatRequireParent(option, value);
+    }
+}
+
+async function disableChildrenWhatRequireParent(option, value) {
+    if (option.hasOwnProperty('children')) {
         for (const child of option.children) {
             if (child.hasOwnProperty('requireParent') && child.requireParent === true && value === VALUE_FALSE) {
                 await setOptionValue(child.id, value);
+                await disableChildrenWhatRequireParent(child, value);
             }
         }
     }
