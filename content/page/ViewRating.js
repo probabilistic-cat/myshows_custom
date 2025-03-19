@@ -47,9 +47,12 @@ class ViewRating
             setTimeout(() => {
                 const jsonData = $('#__NUXT_DATA__').html();
                 const data = JSON.parse(jsonData);
+                //console.log(JSON.stringify(Object.assign({}, data)));
 
                 if (this.#isDataAvailable(data)) {
                     const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data, enableBarsSpecials);
+                    console.log('seasonsData: ' + JSON.stringify(seasonsData));
+                    console.log('episodesData: ' + JSON.stringify(episodesData));
                     this.#makeRatingTableAccurate(seasonsData, episodesData, lang);
                     if (enableBars) {
                         this.#renderRatingBars(seasonsData, episodesData, lang);
@@ -119,7 +122,7 @@ class ViewRating
         for (const episode1Key of episodes1Keys) {
             const episodeId = data[data[episode1Key].id];
             if (episodesData.hasOwnProperty(episodeId)) {
-                episodesData[episodeId].date = data[data[episode1Key].airDateUTC];
+                episodesData[episodeId].date = data[data[episode1Key].airDateUTC].substring(0, 10);
             }
         }
 
