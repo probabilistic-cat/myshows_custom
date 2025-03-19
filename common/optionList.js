@@ -85,16 +85,22 @@ const optionList = [
             [LANG_RU]: 'Скрыть лучшие комментарии',
             [LANG_UA]: 'Приховати кращі коментарі',
         }, default: true},
-        {id: 'view_accurate_rating', name: {
+        {id: 'view_rating_accurate', name: {
             [LANG_EN]: 'Accurate rating',
             [LANG_RU]: 'Точный рейтинг серий',
             [LANG_UA]: 'Точний рейтинг серій',
         }, default: true, children: [
-            {id: 'view_accurate_rating_bars', name: {
+            {id: 'view_rating_bars', name: {
                 [LANG_EN]: 'Rating bars',
                 [LANG_RU]: 'Рейтинг столбиками',
                 [LANG_UA]: 'Рейтинг стовпчиками',
-            }, default: true, requireParent: true},
+            }, default: true, requireParent: true, children: [
+                {id:'view_rating_bars_specials', name: {
+                    [LANG_EN]: 'Specials',
+                    [LANG_RU]: 'Спешалы',
+                    [LANG_UA]: 'Спешали',
+                }, default: false, requireParent: true},
+            ]},
         ]},
     ]},
 ];

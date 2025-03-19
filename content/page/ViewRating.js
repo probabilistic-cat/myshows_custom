@@ -42,16 +42,16 @@ class ViewRating
         }
     }
 
-    static makeRatingAccurate(renderBars, lang) {
+    static makeRatingAccurate(enableBars, enableBarsSpecials, lang) {
         if (this.#isViewRatingPage()) {
             setTimeout(() => {
                 const jsonData = $('#__NUXT_DATA__').html();
                 const data = JSON.parse(jsonData);
 
                 if (this.#isDataAvailable(data)) {
-                    const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data);
+                    const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data, enableBarsSpecials);
                     this.#makeRatingTableAccurate(seasonsData, episodesData, lang);
-                    if (renderBars) {
+                    if (enableBars) {
                         this.#renderRatingBars(seasonsData, episodesData, lang);
                     }
                 } else {
@@ -81,7 +81,7 @@ class ViewRating
         $(html).insertBefore('.ShowRatingTable');
     }
 
-    static #getSeasonsAndEpisodesData(data) {
+    static #getSeasonsAndEpisodesData(data, enableBarsSpecials) {
         let seasonsData = {};
         let episodesData = {};
 
@@ -94,7 +94,7 @@ class ViewRating
                 const episodeNum = data[data[episode2Key].episodeNumber];
                 const rating = data[data[episode2Key].rating];
 
-                if (episodeNum === this.#SPECIAL_NUM) {
+                if (enableBarsSpecials === false && episodeNum === this.#SPECIAL_NUM) {
                     continue;
                 }
 

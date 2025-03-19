@@ -49,9 +49,10 @@ class OptionHandler
             ViewShow.hideBestComments(lang);
             ViewRating.hideBestComments(lang);
         });
-        await this.#enableIfOn('view_accurate_rating', async() => {
-            const renderBars = await this.#isOptionOn('view_accurate_rating_bars');
-            ViewRating.makeRatingAccurate(renderBars, lang);
+        await this.#enableIfOn('view_rating_accurate', async() => {
+            const enableBars = await this.#isOptionOn('view_rating_bars');
+            const enableBarsSpecials = await this.#isOptionOn('view_rating_bars_specials');
+            ViewRating.makeRatingAccurate(enableBars, enableBarsSpecials, lang);
         });
     }
 
