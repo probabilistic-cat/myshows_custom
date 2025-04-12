@@ -51,8 +51,6 @@ class ViewRating
 
                 if (this.#isDataAvailable(data)) {
                     const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data, enableBarsSpecials);
-                    console.log('seasonsData: ' + JSON.stringify(seasonsData));
-                    console.log('episodesData: ' + JSON.stringify(episodesData));
                     this.#makeRatingTableAccurate(seasonsData, episodesData, lang);
                     if (enableBars) {
                         this.#renderRatingBars(seasonsData, episodesData, lang);
@@ -156,8 +154,12 @@ class ViewRating
     }
 
     static #renderRatingBars(seasonsData, episodesData, lang) {
-        const [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
+        let [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
+        if (minRating > 1.05) {
+            minRating -= 0.05;
+        }
         const barsCellsData = this.#getBarsCellsData(minRating, maxRating);
+
         const backgroundColor = $('.Page__main').css('--content-background');
         const graphLine = '1px solid #b2b2b2';
         const smallFont = 'font-size: 11px;';
