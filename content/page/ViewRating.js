@@ -3,6 +3,8 @@ class ViewRating
     static #TIMEOUT = 500;
     static #SPECIAL_NUM = 0;
 
+    static #VERY_TINY_BAR_ACCEPTABLE = true;
+
     static #LANG_EMOTIONAL_RATING = {
         [LANG_EN]: 'Emotional rating',
         [LANG_RU]: 'Эмоциональная оценка',
@@ -155,7 +157,7 @@ class ViewRating
 
     static #renderRatingBars(seasonsData, episodesData, lang) {
         let [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
-        if (minRating > 1.05) {
+        if (!this.#VERY_TINY_BAR_ACCEPTABLE && minRating > 1.05) {
             minRating -= 0.05;
         }
         const barsCellsData = this.#getBarsCellsData(minRating, maxRating);
