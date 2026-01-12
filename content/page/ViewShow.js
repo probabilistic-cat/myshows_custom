@@ -30,7 +30,7 @@ class ViewShow
             const details = $('.ShowDetails');
             const detailsTop = details.children(':first');
             const detailsPoster = details.find('.ShowDetails-poster');
-            const detailsStatus = details.find('.ShowDetails-status');
+            const detailsStatus = details.find('.ShowDetails__status-bar');
             const detailsInfo = detailsStatus.next();
             const detailsDesc = detailsInfo.next();
 
@@ -59,6 +59,7 @@ class ViewShow
             });
 
 
+            const favoriteButton = $('.ShowDetails-favorite');
             const infoRating = detailsInfo.children(':first');
             const showRating = infoRating.find('.ShowRating');
             const showRatingInfo = showRating.find('.ShowRating-info');
@@ -66,6 +67,7 @@ class ViewShow
             const showRatingInfoTitle = showRatingInfo.find('.ShowRating-title');
             const showRatingInfoStars = showRatingInfo.find('.ShowRating__stars-wrapper');
 
+            favoriteButton.css({'top': '12px', 'right': '14px'});
             infoRating.css({'margin': '0'});
             showRating.css({
                 'width': '100%',
