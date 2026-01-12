@@ -46,7 +46,7 @@ class OptionHandler
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
         await this.#enableIfOn('view_similar_hide', () => ViewShow.hideSimilar(lang));
-        await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews());
+        await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews(lang));
         await this.#enableIfOn('view_best_comments_hide', () => {
             ViewShow.hideBestComments(lang);
             ViewRating.hideBestComments(lang);

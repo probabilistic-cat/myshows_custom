@@ -56,7 +56,7 @@ const optionList = [
             [LANG_UA]: 'Компактний постер та інфо',
         }, default: true},
         {id: 'view_report_hide', name: {
-            [LANG_EN]: 'Hide report panel',
+            [LANG_EN]: 'Hide "Found incorrect info?"',
             [LANG_RU]: 'Скрыть "Нашли ошибку?"',
             [LANG_UA]: 'Приховати "Знайшли помилку?"',
         }, default: true},
@@ -66,12 +66,12 @@ const optionList = [
             [LANG_UA]: 'Приховати "Дивіться також"',
         }, default: true},
         {id: 'view_emoji_hide', name: {
-            [LANG_EN]: 'Hide emoji panel',
+            [LANG_EN]: 'Hide emojis',
             [LANG_RU]: 'Скрыть эмоджи',
             [LANG_UA]: 'Приховати емоджі',
         }, default: true},
         {id: 'view_note_share_hide', name: {
-            [LANG_EN]: 'Hide note and share panel',
+            [LANG_EN]: 'Hide "Add a note" and "Share"',
             [LANG_RU]: 'Скрыть "Написать заметку" и "Поделиться"',
             [LANG_UA]: 'Приховати "Написати нотатку" и "Поділитися"',
         }, default: true},
@@ -91,7 +91,7 @@ const optionList = [
             [LANG_UA]: 'Приховати рецензії',
         }, default: true},
         {id: 'view_best_comments_hide', name: {
-            [LANG_EN]: 'Hide best  comments',
+            [LANG_EN]: 'Hide top comments',
             [LANG_RU]: 'Скрыть лучшие комментарии',
             [LANG_UA]: 'Приховати кращі коментарі',
         }, default: true},

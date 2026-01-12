@@ -5,7 +5,13 @@ class ViewShow
     static #LANG_SIMILAR = {
         [LANG_EN]: 'Similar',
         [LANG_RU]: 'Похожие',
-        [LANG_UA]: 'Схожі', // ?
+        [LANG_UA]: 'Схожі',
+    };
+
+    static #LANG_REVIEWS = {
+        [LANG_EN]: 'Reviews',
+        [LANG_RU]: 'Рецензии',
+        [LANG_UA]: 'Рецензії',
     };
 
     static compact() {
@@ -137,8 +143,7 @@ class ViewShow
     static hideBestComments(lang) {
         if (this.#isViewShowPage()) {
             ViewCommon.fixNavigation();
-
-            $('.ShowPage__best-comments').hide();
+            $('#top-comments').hide();
             $('.TopNavigation__link:contains(' + ViewCommon.LANG_BEST_COMMENTS[lang] + ')').hide();
         }
     }
@@ -151,9 +156,11 @@ class ViewShow
         }
     }
 
-    static hideReviews() {
+    static hideReviews(lang) {
         if (this.#isViewShowPage()) {
+            ViewCommon.fixNavigation();
             $('.ShowPage__reviews').hide();
+            $('.TopNavigation__link:contains(' + this.#LANG_REVIEWS[lang] + ')').hide();
         }
     }
 

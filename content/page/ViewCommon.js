@@ -1,7 +1,7 @@
 class ViewCommon
 {
     static LANG_BEST_COMMENTS = {
-        [LANG_EN]: 'Best comments',
+        [LANG_EN]: 'Top Comments',
         [LANG_RU]: 'Лучшие комментарии',
         [LANG_UA]: 'Кращі коментарі',
     };
