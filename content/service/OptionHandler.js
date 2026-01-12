@@ -35,6 +35,7 @@ class OptionHandler
             ViewShow.compactPosterAndInfo();
         });
         await this.#enableIfOn('view_report_hide', () => ViewShow.hideReport());
+        await this.#enableIfOn('view_watch_also_hide', () => ViewShow.hideWatchAlso());
         await this.#enableIfOn('view_emoji_hide', () => {
             ViewShow.hideEmoji();
             ViewRating.hideEmoji(lang);
@@ -45,6 +46,7 @@ class OptionHandler
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
         await this.#enableIfOn('view_similar_hide', () => ViewShow.hideSimilar(lang));
+        await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews());
         await this.#enableIfOn('view_best_comments_hide', () => {
             ViewShow.hideBestComments(lang);
             ViewRating.hideBestComments(lang);

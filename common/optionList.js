@@ -60,6 +60,11 @@ const optionList = [
             [LANG_RU]: 'Скрыть "Нашли ошибку?"',
             [LANG_UA]: 'Приховати "Знайшли помилку?"',
         }, default: true},
+        {id: 'view_watch_also_hide', name: {
+            [LANG_EN]: 'Hide "Watch also"',
+            [LANG_RU]: 'Скрыть "Смотрите также"',
+            [LANG_UA]: 'Приховати "Дивіться також"',
+        }, default: true},
         {id: 'view_emoji_hide', name: {
             [LANG_EN]: 'Hide emoji panel',
             [LANG_RU]: 'Скрыть эмоджи',
@@ -79,6 +84,11 @@ const optionList = [
             [LANG_EN]: 'Hide similar shows',
             [LANG_RU]: 'Скрыть похожие сериалы',
             [LANG_UA]: 'Приховати схожі серіали',
+        }, default: true},
+        {id: 'view_reviews_hide', name: {
+            [LANG_EN]: 'Hide reviews',
+            [LANG_RU]: 'Скрыть рецензии',
+            [LANG_UA]: 'Приховати рецензії',
         }, default: true},
         {id: 'view_best_comments_hide', name: {
             [LANG_EN]: 'Hide best  comments',

@@ -102,6 +102,12 @@ class ViewShow
         }
     }
 
+    static hideWatchAlso() {
+        if (this.#isViewShowPage()) {
+            $('.ShowDetails__catalog-links').hide();
+        }
+    }
+
     static hideEmoji() {
         if (this.#isViewShowPage()) {
             ViewCommon.removeEmoji();
@@ -142,6 +148,12 @@ class ViewShow
             ViewCommon.fixNavigation();
             $('.ShowPage__similar-block').hide();
             $('.TopNavigation__link:contains(' + this.#LANG_SIMILAR[lang] + ')').hide();
+        }
+    }
+
+    static hideReviews() {
+        if (this.#isViewShowPage()) {
+            $('.ShowPage__reviews').hide();
         }
     }
 
