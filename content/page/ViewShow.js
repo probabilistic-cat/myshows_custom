@@ -16,6 +16,7 @@ class ViewShow
 
     static compact() {
         if (this.#isViewShowPage()) {
+            $('.EpisodesBySeason__episode').css({'min-height': '26px'});
             Utils.addGlobalCss(['.RowEpisodeBySeason {height: 26px !important;}']);
         }
     }
