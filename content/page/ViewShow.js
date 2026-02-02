@@ -66,7 +66,7 @@ class ViewShow
             });
 
 
-            const favoriteButton = $('.ShowDetails-favorite');
+            const favoriteButton = $('.FavoriteButton');
             const infoRating = detailsInfo.children(':first');
             const showRating = infoRating.find('.ShowRating');
             const showRatingInfo = showRating.find('.ShowRating-info');

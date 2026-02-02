@@ -31,11 +31,13 @@ class ViewEpisode
             });
 
 
+            const favoriteButton = $('.FavoriteButton');
             const showRating = detailsInfo.find('.ShowRating');
             const showRatingLabel = showRating.find('.EpisodeWatchLabel');
             const showRatingInfo = showRating.find('.ShowRating-info');
             const showRatingValue = showRating.find('.ShowRating-value');
 
+            favoriteButton.css({'top': '12px', 'right': '14px'});
             showRating.parent().css({
                 'margin': '0',
                 'padding-bottom': '10px',
