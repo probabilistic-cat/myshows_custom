@@ -131,7 +131,7 @@ class ProfileName
         }
 
         if (this.#isNewProfileNamePage()) {
-            const showMore = $('.UserShowsBlock__button-more');
+            const showMore = $('.UserShowsBlockList__button-more');
             setTimeout(() => {
                 showMore.trigger('click');
             }, this.#TIMEOUT);
