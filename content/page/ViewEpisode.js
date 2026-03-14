@@ -30,30 +30,32 @@ class ViewEpisode
                 'padding-left': '0',
             });
 
+            const ratingInfo = detailsInfo.find('.RatingInfo');
+            const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
+            const ratingInfoRight = ratingInfo.find('.RatingInfo__right');
 
-            const favoriteButton = $('.FavoriteButton');
-            const showRating = detailsInfo.find('.ShowRating');
-            const showRatingLabel = showRating.find('.EpisodeWatchLabel');
-            const showRatingInfo = showRating.find('.ShowRating-info');
-            const showRatingValue = showRating.find('.ShowRating-value');
-
-            favoriteButton.css({'top': '12px', 'right': '14px'});
-            showRating.parent().css({
+            ratingInfo.parent().css({
                 'margin': '0',
                 'padding-bottom': '10px',
             });
-            showRating.css({
+            ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
                 'grid-template-rows': '30px 38px',
-                'grid-template-columns': '30px auto',
+                'grid-template-columns': '1fr',
                 'gap': '0',
             });
-            showRatingLabel.css({'grid-area': '1 / 1 / 2 / 2'});
-            showRatingInfo.css({'grid-area': '1 / 2 / 2 / 3'});
-            showRatingValue.css({'grid-area': '2 / 1 / 3 / 3'});
+            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
+            ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
 
-            ViewCommon.InfoTable();
+            ViewCommon.posterFavoriteButton();
+            $('.AddPosterButton').css({'bottom': '12px', 'right': '14px'});
+
+            ViewCommon.infoTable();
+            $('.InfoTable').parent().css({
+                'margin-top': '10px',
+                'border-bottom': '0',
+            });
         }
     }
 

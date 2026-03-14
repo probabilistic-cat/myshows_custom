@@ -1,6 +1,6 @@
 class ViewShow
 {
-    static #TIMEOUT = 500;
+    static #TIMEOUT = 1000;
 
     static #LANG_SIMILAR = {
         [LANG_EN]: 'Similar',
@@ -65,41 +65,45 @@ class ViewShow
                 'width': '100%',
             });
 
-
-            const favoriteButton = $('.FavoriteButton');
             const infoRating = detailsInfo.children(':first');
-            const showRating = infoRating.find('.ShowRating');
-            const showRatingInfo = showRating.find('.ShowRating-info');
-            const showRatingValue = showRating.find('.ShowRating-value');
-            const showRatingInfoTitle = showRatingInfo.find('.ShowRating-title');
-            const showRatingInfoStars = showRatingInfo.find('.ShowRating__stars-wrapper');
+            const ratingInfo = infoRating.find('.RatingInfo');
+            const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
+            const ratingInfoRight = ratingInfo.find('.RatingInfo__right');
+            const ratingInfoLeftTitle = ratingInfoLeft.find('.RatingInfo__title');
+            const ratingInfoLeftStars = ratingInfoLeft.find('.RatingInfo__stars-wrapper');
+            const ratingInfoRightValue = ratingInfoRight.find('.RatingInfo__value');
+            const ratingInfoRightProviders = ratingInfoRight.find('.RatingInfo__providers');
 
-            favoriteButton.css({'top': '12px', 'right': '14px'});
             infoRating.css({'margin': '0'});
-            showRating.css({
+            ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
-                'grid-template-rows': '20px 28px',
+                'grid-template-rows': '24px 42px',
                 'grid-template-columns': infoWidth + 'px',
                 'gap': '0',
             });
-            showRatingInfo.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
-            showRatingValue.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
-            showRatingInfoTitle.css({'width': '50%', 'margin-right': '0'});
-            showRatingInfoStars.css({'width': '50%'});
+            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
+            ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%', 'justify-content': 'normal'});
+            ratingInfoLeftTitle.css({'width': '50%'});
+            ratingInfoLeftStars.css({'width': '40%'});
+            ratingInfoRightValue.css({'width': '50%'});
+            ratingInfoRightProviders.css({'width': '45%'});
 
-            ViewCommon.InfoTable();
+            ViewCommon.posterFavoriteButton();
 
+            ViewCommon.infoTable();
+            setTimeout(() => {
+                const infoTableDetached = $('#description .InfoTable').detach();
+                detailsInfo.append(infoTableDetached);
+                detailsInfo.find('.InfoTable').css({
+                    'margin-top': '10px',
+                    'border-bottom': '0',
+                });
 
-            detailsInfo.find('.ShowDetails-report').css({
-                'border-top': '1px solid var(--border-section-color)',
-                'padding-top': '10px',
-            });
-
-            detailsDesc.find('.ShowTabs').css({
-                'border-top': '1px solid var(--border-section-color)',
-                'padding-top': '20px',
-            });
+                detailsDesc.find('.ShowTabs').css({
+                    'padding-top': '10px',
+                });
+            }, this.#TIMEOUT);
         }
     }
 

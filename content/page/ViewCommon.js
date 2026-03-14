@@ -24,14 +24,14 @@ class ViewCommon
         pageMain.css('max-width', 'calc(100% - ' + pageAsideWidth + 'px)');
     }
 
-    static InfoTable() {
-        const infoTable = $('.info-table');
-        infoTable.find('td').css({'font-size': '14px', 'padding': '1px 0'});
-        infoTable.find('td.info-row__title').css({'width': '140px'});
-        infoTable.find('td.info-row__value').css({'width': 'auto'});
-        infoTable.parent().css({
-            'margin-top': '10px',
-            'border-bottom': '0',
-        });
+    static infoTable() {
+        const infoTable = $('.InfoTable');
+        infoTable.find('td, th').css({'font-size': '14px', 'padding': '1px 0'});
+        infoTable.find('.InfoRow__title').css({'width': '140px'});
+        infoTable.find('.InfoRow__value').css({'width': 'auto'});
+    }
+
+    static posterFavoriteButton() {
+        $('.FavoriteButton').css({'top': '12px', 'right': '14px'});
     }
 }
