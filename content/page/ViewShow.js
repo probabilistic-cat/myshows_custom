@@ -112,12 +112,14 @@ class ViewShow
     static hideWatchAlso() {
         if (this.#isViewShowPage()) {
             $('.ShowDetails__catalog-links').hide();
+            $('.ShowTabs__catalog-links').hide();
         }
     }
 
     static hideEmoji() {
         if (this.#isViewShowPage()) {
             ViewCommon.removeEmoji();
+            $('.ShowTabs__reactions').hide();
         }
     }
 
@@ -125,6 +127,8 @@ class ViewShow
         if (this.#isViewShowPage()) {
             $('.ShowDetails__note').hide();
             $('.ShowDetails__share').hide();
+            $('.ShowTabs__note').hide();
+            $('.ShowTabs__share').hide();
         }
     }
 
@@ -132,7 +136,7 @@ class ViewShow
         if (this.#isViewShowPage()) {
             setTimeout(() => {
                 $('.EpisodesBySeason__season-row-column').each(function() {
-                    const iconOpenEl = $(this).find('svg.EpisodesBySeason__season-row-toggle-icon');
+                    const iconOpenEl = $(this).find('.EpisodesBySeason__season-row-toggle-icon');
                     if (!iconOpenEl.hasClass('opened')) {
                         $(this).trigger('click');
                     }
