@@ -106,6 +106,7 @@ class ViewShow
     static hideReport() {
         if (this.#isViewShowPage()) {
             $('.ShowDetails-report').hide();
+            $('.ShowTabs__report').hide();
         }
     }
 
