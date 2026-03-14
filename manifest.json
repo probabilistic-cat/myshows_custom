@@ -2,6 +2,16 @@
     "manifest_version": 2,
     "name": "MyShows Custom",
     "version": "1.2.1",
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{1b0f0650-68a7-4d91-9eb9-7eddafc7c5e0}",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    },
     "description": "Customizations for site myshows.me.",
     "browser_action": {
         "default_area": "navbar",
