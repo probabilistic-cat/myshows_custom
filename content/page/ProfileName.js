@@ -2,7 +2,8 @@ class ProfileName
 {
     static #TIMEOUT = 1000;
     static #FRIENDS_COUNT = 10;
-    static #ACHIEVEMENTS_COUNT = 10;
+    static #ACHIEVEMENTS_IN_ROW = 10;
+    static #ACHIEVEMENTS_COUNT = 100;
 
     static #LANG_STATS_EPISODES = {
         [LANG_EN]: ['episodes', 'episode'],
@@ -50,11 +51,11 @@ class ProfileName
 
             $('.com-comments .Col').css({'padding': '5px 0'});
 
-            $('.AchievementList__item').css({'width': Utils.round(100 / this.#FRIENDS_COUNT, 2) + '%'});
-            $('.AchievementList__item:nth-child(-n+' + this.#FRIENDS_COUNT + ')').show();
+            $('.AchievementList__item').css({'width': Utils.round(100 / this.#ACHIEVEMENTS_IN_ROW, 2) + '%'});
+            $('.AchievementList__item:nth-child(-n+' + this.#ACHIEVEMENTS_COUNT + ')').show();
 
             $('.UserFriendsBlock__list').css({
-                'grid-template-columns': 'repeat(' + this.#ACHIEVEMENTS_COUNT + ', 1fr)',
+                'grid-template-columns': 'repeat(' + this.#FRIENDS_COUNT + ', 1fr)',
             });
             $('.UserFriendsBlock__name, .UserFriendsBlock__add-title').css({'font-size': '13px'});
         }
