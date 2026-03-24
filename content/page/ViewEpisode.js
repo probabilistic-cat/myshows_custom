@@ -4,9 +4,9 @@ class ViewEpisode
         if (this.#isViewEpisodePage()) {
             const pageMain = $('.Page__main');
 
-            const details = $('.episode-details');
+            const details = $('.EpisodeDetails');
             const detailsTop = details.children(':first');
-            const detailsPoster = details.find('.episode-details-poster');
+            const detailsPoster = details.find('.EpisodeDetails__poster');
             const detailsInfo = detailsPoster.next();
 
             const posterWidth = pageMain.width() * 0.6;

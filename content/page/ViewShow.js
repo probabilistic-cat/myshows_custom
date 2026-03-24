@@ -65,6 +65,8 @@ class ViewShow
                 'width': '100%',
             });
 
+            $('.ShowDetails__rating-row').css({'padding-bottom': '10px'});
+
             const infoRating = detailsInfo.children(':first');
             const ratingInfo = infoRating.find('.RatingInfo');
             const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
@@ -78,16 +80,12 @@ class ViewShow
             ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
-                'grid-template-rows': '24px 42px',
+                'grid-template-rows': '30px 38px',
                 'grid-template-columns': infoWidth + 'px',
                 'gap': '0',
             });
             ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
             ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%', 'justify-content': 'normal'});
-            ratingInfoLeftTitle.css({'width': '50%'});
-            ratingInfoLeftStars.css({'width': '40%'});
-            ratingInfoRightValue.css({'width': '50%'});
-            ratingInfoRightProviders.css({'width': '45%'});
 
             ViewCommon.posterFavoriteButton();
 
