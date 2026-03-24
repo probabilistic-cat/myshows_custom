@@ -11,9 +11,9 @@ class ViewRating
         [LANG_UA]: 'Емоційна оцінка',
     };
     static #LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING = {
-        [LANG_EN]: 'Refresh page to get an accurate rating.',
-        [LANG_RU]: 'Обновите страницу, чтобы получить точный рейтинг.',
-        [LANG_UA]: 'Оновіть сторінку, щоб отримати точний рейтинг.',
+        [LANG_EN]: 'Refresh page to show an accurate rating.',
+        [LANG_RU]: 'Обновите страницу, чтобы отобразить точный рейтинг.',
+        [LANG_UA]: 'Оновіть сторінку, щоб побачити точний рейтинг.',
     };
     static #LANG_RATING = {
         [LANG_EN]: 'Rating',
@@ -156,7 +156,11 @@ class ViewRating
     }
 
     static #renderRatingBars(seasonsData, episodesData, lang) {
-        let [minRating, maxRating] = this.#getMinAndMaxRatings(episodesData);
+        const date = new Date();
+        const currentDate = date.toISOString().slice(0, 10);
+        const airedEpisodesData = Object.values(episodesData).filter(item => item.date <= currentDate);
+
+        let [minRating, maxRating] = this.#getMinAndMaxRatings(airedEpisodesData);
         if (!this.#VERY_TINY_BAR_ACCEPTABLE && minRating > 1.05) {
             minRating -= 0.05;
         }
@@ -173,7 +177,7 @@ class ViewRating
         html += '<div class="ShowRatingBars">';
         for (let seasonNum in seasonsData) {
             seasonNum = parseInt(seasonNum);
-            const seasonEpisodesData = Object.values(episodesData)
+            const seasonEpisodesData = Object.values(airedEpisodesData)
                 .filter(item => item.season === seasonNum)
                 .sort((a, b) => {
                     const dateDiff = new Date(a.date) - new Date(b.date);
@@ -181,6 +185,9 @@ class ViewRating
                 })
             ;
             const episodesCount = Object.keys(seasonEpisodesData).length
+            if (episodesCount === 0) {
+                continue;
+            }
 
             html += '<div class="ShowRatingBars__season" style="margin-bottom: 30px;">';
             html += '<p style="font-size: 22px;">Сезон ' + seasonNum + '</p>';
