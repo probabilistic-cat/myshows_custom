@@ -61,8 +61,8 @@ class ViewEpisode
 
     static hideNoteShare() {
         if (this.#isViewEpisodePage()) {
-            $('.episode-details__note').hide();
-            $('.episode-details__share').hide();
+            $('.EpisodeDetails__note').hide();
+            $('.EpisodeDetails__share').hide();
         }
     }
 
