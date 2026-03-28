@@ -41,11 +41,11 @@ class ViewEpisode
             ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
-                'grid-template-rows': '30px 38px',
+                'grid-template-rows': '38px 30px',
                 'grid-template-columns': '1fr',
                 'gap': '0',
             });
-            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
+            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%', 'margin-bottom': '8px'});
             ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
 
             ViewCommon.posterFavoriteButton();

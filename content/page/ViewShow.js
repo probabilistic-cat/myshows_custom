@@ -71,8 +71,6 @@ class ViewShow
             const ratingInfo = infoRating.find('.RatingInfo');
             const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
             const ratingInfoRight = ratingInfo.find('.RatingInfo__right');
-            const ratingInfoLeftTitle = ratingInfoLeft.find('.RatingInfo__title');
-            const ratingInfoLeftStars = ratingInfoLeft.find('.RatingInfo__stars-wrapper');
             const ratingInfoRightValue = ratingInfoRight.find('.RatingInfo__value');
             const ratingInfoRightProviders = ratingInfoRight.find('.RatingInfo__providers');
 
@@ -80,12 +78,14 @@ class ViewShow
             ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
-                'grid-template-rows': '30px 38px',
+                'grid-template-rows': '38px 1fr',
                 'grid-template-columns': infoWidth + 'px',
                 'gap': '0',
             });
-            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%'});
-            ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%', 'justify-content': 'normal'});
+            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%', 'margin-bottom': '8px', 'gap': '5px'});
+            ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%', 'display': 'block'});
+            ratingInfoRightValue.css({'height': '30px', 'margin-bottom': '8px'});
+            ratingInfoRightProviders.css({'float': 'left', 'height': '18px'});
 
             ViewCommon.posterFavoriteButton();
 
@@ -95,11 +95,8 @@ class ViewShow
                 detailsInfo.append(infoTableDetached);
                 detailsInfo.find('.InfoTable').css({
                     'margin-top': '10px',
+                    'margin-bottom': '30px',
                     'border-bottom': '0',
-                });
-
-                detailsDesc.find('.ShowTabs').css({
-                    'padding-top': '10px',
                 });
             }, this.#TIMEOUT);
         }
