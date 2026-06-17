@@ -85,6 +85,11 @@ const optionList = [
             [LANG_RU]: 'Скрыть похожие сериалы',
             [LANG_UA]: 'Приховати схожі серіали',
         }, default: true},
+        {id: 'view_collections_hide', name: {
+            [LANG_EN]: 'Hide collections',
+            [LANG_RU]: 'Скрыть подборки',
+            [LANG_UA]: 'Приховати підбірки',
+        }, default: true},
         {id: 'view_reviews_hide', name: {
             [LANG_EN]: 'Hide reviews',
             [LANG_RU]: 'Скрыть рецензии',

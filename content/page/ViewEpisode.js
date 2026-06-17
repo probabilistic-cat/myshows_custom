@@ -32,6 +32,8 @@ class ViewEpisode
 
             const ratingInfo = detailsInfo.find('.RatingInfo');
             const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
+            const ratingInfoLeftWatch = ratingInfoLeft.find('.EpisodeDetails__watch-label');
+            const ratingInfoLeftStars = ratingInfoLeft.find('.RatingInfo__stars-wrapper');
             const ratingInfoRight = ratingInfo.find('.RatingInfo__right');
 
             ratingInfo.parent().css({
@@ -45,10 +47,21 @@ class ViewEpisode
                 'grid-template-columns': '1fr',
                 'gap': '0',
             });
-            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%', 'margin-bottom': '8px'});
+            ratingInfoLeft.css({
+                'grid-area': '1 / 1 / 2 / 2',
+                'width': '100%',
+                'display': 'grid',
+                'grid-template-rows': '1fr',
+                'grid-template-columns': '31px 1fr',
+                'margin-bottom': '8px',
+                'gap': '5px',
+            });
             ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%'});
+            ratingInfoLeftWatch.css({'grid-area': '1 / 1 / 2 / 2'});
+            ratingInfoLeftStars.css({'grid-area': '1 / 2 / 2 / 3'});
 
             ViewCommon.posterFavoriteButton();
+            ViewCommon.posterDisclaimer();
             $('.AddPosterButton').css({'bottom': '12px', 'right': '14px'});
 
             ViewCommon.infoTable();

@@ -34,4 +34,8 @@ class ViewCommon
     static posterFavoriteButton() {
         $('.FavoriteButton').css({'top': '12px', 'right': '14px'});
     }
+
+    static posterDisclaimer() {
+        $('.PicturePoster__disclaimer').css({'bottom': '12px', 'right': '11px'});
+    }
 }

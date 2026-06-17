@@ -26,6 +26,10 @@ class ViewRating
         [LANG_UA]: 'голосів',
     };
 
+    static compactPosterAndInfo() {
+        ViewCommon.posterDisclaimer();
+    }
+
     static hideEmoji(lang) {
         if (this.#isViewRatingPage()) {
             ViewCommon.removeEmoji();

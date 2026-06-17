@@ -2,18 +2,6 @@ class ViewShow
 {
     static #TIMEOUT = 1000;
 
-    static #LANG_SIMILAR = {
-        [LANG_EN]: 'Similar',
-        [LANG_RU]: 'Похожие',
-        [LANG_UA]: 'Схожі',
-    };
-
-    static #LANG_REVIEWS = {
-        [LANG_EN]: 'Reviews',
-        [LANG_RU]: 'Рецензии',
-        [LANG_UA]: 'Рецензії',
-    };
-
     static compact() {
         if (this.#isViewShowPage()) {
             $('.EpisodesBySeason__episode').css({'min-height': '26px'});
@@ -67,14 +55,16 @@ class ViewShow
 
             $('.ShowDetails__rating-row').css({'padding-bottom': '10px'});
 
-            const infoRating = detailsInfo.children(':first');
-            const ratingInfo = infoRating.find('.RatingInfo');
+            const rating = detailsInfo.children(':first');
+            const ratingInfo = rating.find('.RatingInfo');
             const ratingInfoLeft = ratingInfo.find('.RatingInfo__left');
+            const ratingInfoLeftTitle = ratingInfoLeft.find('.RatingInfo__title');
+            const ratingInfoLeftStars = ratingInfoLeft.find('.RatingInfo__stars-wrapper');
             const ratingInfoRight = ratingInfo.find('.RatingInfo__right');
             const ratingInfoRightValue = ratingInfoRight.find('.RatingInfo__value');
             const ratingInfoRightProviders = ratingInfoRight.find('.RatingInfo__providers');
 
-            infoRating.css({'margin': '0'});
+            rating.css({'margin': '0'});
             ratingInfo.css({
                 'width': '100%',
                 'display': 'grid',
@@ -82,12 +72,23 @@ class ViewShow
                 'grid-template-columns': infoWidth + 'px',
                 'gap': '0',
             });
-            ratingInfoLeft.css({'grid-area': '1 / 1 / 2 / 2', 'width': '100%', 'margin-bottom': '8px', 'gap': '5px'});
+            ratingInfoLeft.css({
+                'grid-area': '1 / 1 / 2 / 2',
+                'width': '100%',
+                'display': 'grid',
+                'grid-template-rows': '1fr',
+                'grid-template-columns': '115px 1fr',
+                'margin-bottom': '8px',
+                'gap': '5px',
+            });
             ratingInfoRight.css({'grid-area': '2 / 1 / 3 / 2', 'width': '100%', 'display': 'block'});
+            ratingInfoLeftTitle.css({'grid-area': '1 / 1 / 2 / 2'});
+            ratingInfoLeftStars.css({'grid-area': '1 / 2 / 2 / 3'});
             ratingInfoRightValue.css({'height': '30px', 'margin-bottom': '8px'});
             ratingInfoRightProviders.css({'float': 'left', 'height': '18px'});
 
             ViewCommon.posterFavoriteButton();
+            ViewCommon.posterDisclaimer();
 
             ViewCommon.infoTable();
             setTimeout(() => {
@@ -145,27 +146,56 @@ class ViewShow
         }
     }
 
-    static hideBestComments(lang) {
+    static hideBestComments(hideNavigation) {
         if (this.#isViewShowPage()) {
-            ViewCommon.fixNavigation();
             $('#top-comments').hide();
-            $('.TopNavigation__link:contains(' + ViewCommon.LANG_BEST_COMMENTS[lang] + ')').hide();
+
+            if (!hideNavigation) {
+                ViewCommon.fixNavigation();
+                setTimeout(() => {
+                    $('.TopNavigationLink[href="#top-comments"]').parent().hide();
+                    console.log('HIDING HIDING HIDING');
+                }, this.#TIMEOUT);
+            }
         }
     }
 
-    static hideSimilar(lang) {
+    static hideCollections(hideNavigation) {
         if (this.#isViewShowPage()) {
-            ViewCommon.fixNavigation();
+            $('.ShowPage__collections-block').hide();
+
+            if (!hideNavigation) {
+                ViewCommon.fixNavigation();
+                setTimeout(() => {
+                    $('.TopNavigationLink[href="#collections"]').parent().hide();
+                }, this.#TIMEOUT);
+            }
+        }
+    }
+
+    static hideSimilar(hideNavigation) {
+        if (this.#isViewShowPage()) {
             $('.ShowPage__similar-block').hide();
-            $('.TopNavigation__link:contains(' + this.#LANG_SIMILAR[lang] + ')').hide();
+
+            if (!hideNavigation) {
+                ViewCommon.fixNavigation();
+                setTimeout(() => {
+                    $('.TopNavigationLink[href="#similar"]').parent().hide();
+                }, this.#TIMEOUT);
+            }
         }
     }
 
-    static hideReviews(lang) {
+    static hideReviews(hideNavigation) {
         if (this.#isViewShowPage()) {
-            ViewCommon.fixNavigation();
             $('.ShowPage__reviews').hide();
-            $('.TopNavigation__link:contains(' + this.#LANG_REVIEWS[lang] + ')').hide();
+
+            if (!hideNavigation) {
+                ViewCommon.fixNavigation();
+                setTimeout(() => {
+                    $('.TopNavigationLink[href="#reviews"]').parent().hide();
+                }, this.#TIMEOUT);
+            }
         }
     }
 

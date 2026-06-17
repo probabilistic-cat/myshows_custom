@@ -33,6 +33,7 @@ class OptionHandler
         await this.#enableIfOn('view_poster_info_compact', () => {
             ViewEpisode.compactPosterAndInfo();
             ViewShow.compactPosterAndInfo();
+            ViewRating.compactPosterAndInfo();
         });
         await this.#enableIfOn('view_report_hide', () => ViewShow.hideReport());
         await this.#enableIfOn('view_watch_also_hide', () => ViewShow.hideWatchAlso());
@@ -45,10 +46,12 @@ class OptionHandler
             ViewShow.hideNoteShare();
         });
         await this.#enableIfOn('view_expand_seasons', () => ViewShow.expandSeasons());
-        await this.#enableIfOn('view_similar_hide', () => ViewShow.hideSimilar(lang));
-        await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews(lang));
+        const hideNavigation = await this.#isOptionOn('view_navigation_hide');
+        await this.#enableIfOn('view_collections_hide', () => ViewShow.hideCollections(hideNavigation));
+        await this.#enableIfOn('view_similar_hide', () => ViewShow.hideSimilar(hideNavigation));
+        await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews(hideNavigation));
         await this.#enableIfOn('view_best_comments_hide', () => {
-            ViewShow.hideBestComments(lang);
+            ViewShow.hideBestComments(hideNavigation);
             ViewRating.hideBestComments(lang);
         });
         await this.#enableIfOn('view_rating_accurate', async() => {
