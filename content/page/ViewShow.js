@@ -119,7 +119,7 @@ class ViewShow
 
     static hideEmoji() {
         if (this.#isViewShowPage()) {
-            ViewCommon.removeEmoji();
+            $('.ShowDetails__reactions').hide();
             $('.ShowTabs__reactions').hide();
         }
     }

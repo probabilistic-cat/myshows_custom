@@ -1,15 +1,5 @@
 class ViewCommon
 {
-    static LANG_BEST_COMMENTS = {
-        [LANG_EN]: 'Top Comments',
-        [LANG_RU]: 'Лучшие комментарии',
-        [LANG_UA]: 'Кращі коментарі',
-    };
-
-    static removeEmoji() {
-        $('.ShowDetails__reactions').hide();
-    }
-
     static fixNavigation() {
         $('.ShowDetails').children(':first').css({'width': '100%'});
     }

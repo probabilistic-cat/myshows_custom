@@ -39,7 +39,7 @@ class OptionHandler
         await this.#enableIfOn('view_watch_also_hide', () => ViewShow.hideWatchAlso());
         await this.#enableIfOn('view_emoji_hide', () => {
             ViewShow.hideEmoji();
-            ViewRating.hideEmoji(lang);
+            ViewRating.hideEmoji();
         });
         await this.#enableIfOn('view_note_share_hide', () => {
             ViewEpisode.hideNoteShare();
@@ -52,7 +52,7 @@ class OptionHandler
         await this.#enableIfOn('view_reviews_hide', () => ViewShow.hideReviews(hideNavigation));
         await this.#enableIfOn('view_best_comments_hide', () => {
             ViewShow.hideBestComments(hideNavigation);
-            ViewRating.hideBestComments(lang);
+            ViewRating.hideBestComments();
         });
         await this.#enableIfOn('view_rating_accurate', async() => {
             const enableBars = await this.#isOptionOn('view_rating_bars');

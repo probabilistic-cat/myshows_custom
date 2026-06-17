@@ -5,11 +5,6 @@ class ViewRating
 
     static #VERY_TINY_BAR_ACCEPTABLE = true;
 
-    static #LANG_EMOTIONAL_RATING = {
-        [LANG_EN]: 'Emotional rating',
-        [LANG_RU]: 'Эмоциональная оценка',
-        [LANG_UA]: 'Емоційна оцінка',
-    };
     static #LANG_RELOAD_PAGE_TO_GET_ACCURATE_RATING = {
         [LANG_EN]: 'Refresh page to show an accurate rating.',
         [LANG_RU]: 'Обновите страницу, чтобы отобразить точный рейтинг.',
@@ -30,21 +25,19 @@ class ViewRating
         ViewCommon.posterDisclaimer();
     }
 
-    static hideEmoji(lang) {
+    static hideEmoji() {
         if (this.#isViewRatingPage()) {
-            ViewCommon.removeEmoji();
-
-            const title = this.#LANG_EMOTIONAL_RATING[lang];
-            $('h3.title__main-text:contains(' + title + ')').closest('.title.title__secondary').hide();
+            const emojiBlock = $('.ShowDetails__reactions');
+            emojiBlock.prev().hide();
+            emojiBlock.hide();
         }
     }
 
-    static hideBestComments(lang) {
+    static hideBestComments() {
         if (this.#isViewRatingPage()) {
-            const title = ViewCommon.LANG_BEST_COMMENTS[lang];
-            $('h3.title__main-text:contains(' + title + ')').closest('.title.title__secondary').hide();
-
-            $('.ShowRatingPage__top-comments').hide()
+            const commentsBlock = $('.CommentsFeed');
+            commentsBlock.prev().hide();
+            commentsBlock.hide();
         }
     }
 
