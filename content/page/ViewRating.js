@@ -1,7 +1,6 @@
 class ViewRating
 {
     static #TIMEOUT = 500;
-    static #SPECIAL_NUM = 0;
 
     static #VERY_TINY_BAR_ACCEPTABLE = true;
 
@@ -49,10 +48,10 @@ class ViewRating
                 //console.log(JSON.stringify(Object.assign({}, data)));
 
                 if (this.#isDataAvailable(data)) {
-                    const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data, enableBarsSpecials);
+                    const [seasonsData, episodesData] = this.#getSeasonsAndEpisodesData(data);
                     this.#makeRatingTableAccurate(seasonsData, episodesData, lang);
                     if (enableBars) {
-                        this.#renderRatingBars(seasonsData, episodesData, lang);
+                        this.#renderRatingBars(seasonsData, episodesData, lang, enableBarsSpecials);
                     }
                 } else {
                     this.#showNoDataWarning(lang);
@@ -81,7 +80,7 @@ class ViewRating
         $(html).insertBefore('.ShowRatingTable');
     }
 
-    static #getSeasonsAndEpisodesData(data, enableBarsSpecials) {
+    static #getSeasonsAndEpisodesData(data) {
         let seasonsData = {};
         let episodesData = {};
 
@@ -93,16 +92,14 @@ class ViewRating
                 const seasonNum = data[data[episode2Key].seasonNumber];
                 const episodeNum = data[data[episode2Key].episodeNumber];
                 const rating = data[data[episode2Key].rating];
-
-                if (enableBarsSpecials === false && episodeNum === this.#SPECIAL_NUM) {
-                    continue;
-                }
+                const isSpecial = data[data[episode2Key].isSpecial];
 
                 episodesData[episodeId] = {
                     id: episodeId,
                     season: seasonNum,
                     episode: episodeNum,
                     rating: rating,
+                    isSpecial: isSpecial,
                     votes: data[data[episode2Key].votes],
                 };
 
@@ -152,10 +149,13 @@ class ViewRating
         });
     }
 
-    static #renderRatingBars(seasonsData, episodesData, lang) {
+    static #renderRatingBars(seasonsData, episodesData, lang, enableBarsSpecials) {
         const date = new Date();
         const currentDate = date.toISOString().slice(0, 10);
-        const airedEpisodesData = Object.values(episodesData).filter(item => item.date <= currentDate);
+        let airedEpisodesData = Object.values(episodesData).filter(item => item.date < currentDate);
+        if (!enableBarsSpecials) {
+            airedEpisodesData = Object.values(airedEpisodesData).filter(item => item.isSpecial === false);
+        }
 
         let [minRating, maxRating] = this.#getMinAndMaxRatings(airedEpisodesData);
         if (!this.#VERY_TINY_BAR_ACCEPTABLE && minRating > 1.05) {
@@ -274,7 +274,7 @@ class ViewRating
                     episodeData.rating, barsCellsData.minRatingLimit,
                     barsCellsData.maxRatingLimit, barHeightMax
                 ), 2);
-                const episodeNumDisplay = (episodeData.episode !== this.#SPECIAL_NUM) ? episodeData.episode : 'special';
+                const episodeNumDisplay = !episodeData.isSpecial ? episodeData.episode : 'special';
                 let episodeNumBorderStyle = '';
                 if (episodeNum > 1) {
                     episodeNumBorderStyle += 'border-left: ' + graphLine + ';';

@@ -62,7 +62,7 @@ class ViewEpisode
 
             ViewCommon.posterFavoriteButton();
             ViewCommon.posterDisclaimer();
-            $('.AddPosterButton').css({'bottom': '12px', 'right': '14px'});
+            $('.AddPosterButton').css({'bottom': '12px'});
 
             ViewCommon.infoTable();
             $('.InfoTable').parent().css({
