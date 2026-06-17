@@ -1,6 +1,6 @@
 class ViewRating
 {
-    static #TIMEOUT = 500;
+    static #TIMEOUT = 1000;
 
     static #VERY_TINY_BAR_ACCEPTABLE = true;
 

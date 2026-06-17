@@ -1,6 +1,6 @@
 class ProfileCalendar
 {
-    static #TIMEOUT = 500;
+    static #TIMEOUT = 1000;
 
     static compact() {
         if (this.#isProfileCalendarPage()) {
